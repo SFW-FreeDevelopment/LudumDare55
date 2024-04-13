@@ -11,14 +11,12 @@ namespace LD55.Controllers
         public LayerMask whatStopsMovement;
         public LayerMask encounterZone;
 
-        // Start is called before the first frame update
         void Start()
         {
-            //remove movepoint from parent so that movepoint position is not relative to the player
+            // Remove movePoint from parent so that movePoint position is not relative to the player
             movePoint.parent = null;
         }
 
-        // Update is called once per frame
         void Update()
         {
             transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
@@ -30,18 +28,15 @@ namespace LD55.Controllers
                     if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, whatStopsMovement))
                     {
                         movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
-                        CheckForEncounters();
-                        return;
+                        CheckForEncounters(); // Check for encounters right after updating movePoint
                     }
                 }
-
-                if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
+                else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
                 {
                     if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), .2f, whatStopsMovement))
                     {
                         movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
-                        CheckForEncounters();
-                        return;
+                        CheckForEncounters(); // Check for encounters right after updating movePoint
                     }
                 }
             }
@@ -49,9 +44,9 @@ namespace LD55.Controllers
 
         private void CheckForEncounters()
         {
-            if (Physics2D.OverlapCircle(transform.position, 0.2f, encounterZone) != null)
+            if (Physics2D.OverlapCircle(movePoint.position, 0.2f, encounterZone) != null)
             {
-                if (Random.Range(1, 101) <= 100)
+                if (Random.Range(1, 101) <= 101)
                 {
                     Debug.Log($"Encountered pokemon {count}");
                     count++;
