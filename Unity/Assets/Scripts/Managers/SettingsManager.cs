@@ -1,39 +1,42 @@
-﻿using Models;
+﻿using LD55.Models;
 using Newtonsoft.Json;
 using UnityEngine;
 
-public class SettingsManager : GameSingleton<SettingsManager>
+namespace LD55.Managers
 {
-    public Settings Settings { get; private set; } = new();
-
-    protected override void InitSingletonInstance()
+    public class SettingsManager : GameSingleton<SettingsManager>
     {
-        Load();
-    }
+        public Settings Settings { get; private set; } = new();
 
-    public void Save()
-    {
-        var json = JsonConvert.SerializeObject(Settings);
-        PlayerPrefs.SetString("Settings", json);
-    }
-
-    private void Load()
-    {
-        if (PlayerPrefs.HasKey("Settings"))
+        protected override void InitSingletonInstance()
         {
-            var json = PlayerPrefs.GetString("Settings");
-            try
+            Load();
+        }
+
+        public void Save()
+        {
+            var json = JsonConvert.SerializeObject(Settings);
+            PlayerPrefs.SetString("Settings", json);
+        }
+
+        private void Load()
+        {
+            if (PlayerPrefs.HasKey("Settings"))
             {
-                Settings = JsonConvert.DeserializeObject<Settings>(json) ?? new Settings();
+                var json = PlayerPrefs.GetString("Settings");
+                try
+                {
+                    Settings = JsonConvert.DeserializeObject<Settings>(json) ?? new Settings();
+                }
+                catch
+                {
+                    Settings = new Settings();
+                }
             }
-            catch
+            else
             {
                 Settings = new Settings();
             }
-        }
-        else
-        {
-            Settings = new Settings();
         }
     }
 }

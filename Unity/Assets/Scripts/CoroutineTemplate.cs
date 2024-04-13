@@ -1,61 +1,64 @@
-﻿    using System;
-    using System.Collections;
-    using UnityEngine;
-    using Random=UnityEngine.Random;
+﻿using System;
+using System.Collections;
+using UnityEngine;
+using Random=UnityEngine.Random;
 
-    public static class CoroutineTemplate
+    namespace LD55
     {
-        /// <param name="delay">Delay in seconds</param>
-        /// <param name="action">Action to invoke</param>
-        public static IEnumerator DelayAndFireRoutine(float delay, Action action)
+        public static class CoroutineTemplate
         {
-            yield return new WaitForSeconds(delay);
-            action?.Invoke();
-        }
-        
-        /// <param name="delay">Delay in seconds</param>
-        /// <param name="action">Action to invoke</param>
-        public static IEnumerator DelayAndFireLoopRoutine(float delay, Action action)
-        {
-            while (true)
+            /// <param name="delay">Delay in seconds</param>
+            /// <param name="action">Action to invoke</param>
+            public static IEnumerator DelayAndFireRoutine(float delay, Action action)
             {
                 yield return new WaitForSeconds(delay);
                 action?.Invoke();
             }
-        }
         
-        /// <param name="delayMin">Minimum delay in seconds</param>
-        /// <param name="delayMax">Maximum delay in seconds</param>
-        /// <param name="action">Action to invoke</param>
-        public static IEnumerator RandomDelayAndFireLoopRoutine(float delayMin, float delayMax, Action action)
-        {
-            while (true)
+            /// <param name="delay">Delay in seconds</param>
+            /// <param name="action">Action to invoke</param>
+            public static IEnumerator DelayAndFireLoopRoutine(float delay, Action action)
             {
-                yield return new WaitForSeconds(Random.Range(delayMin, delayMax));
-                action?.Invoke();
+                while (true)
+                {
+                    yield return new WaitForSeconds(delay);
+                    action?.Invoke();
+                }
             }
-        }
         
-        /// <param name="delay">Delay in seconds</param>
-        /// <param name="action">Action to invoke</param>
-        public static IEnumerator FireAndDelayLoopRoutine(float delay, Action action)
-        {
-            while (true)
+            /// <param name="delayMin">Minimum delay in seconds</param>
+            /// <param name="delayMax">Maximum delay in seconds</param>
+            /// <param name="action">Action to invoke</param>
+            public static IEnumerator RandomDelayAndFireLoopRoutine(float delayMin, float delayMax, Action action)
             {
-                action?.Invoke();
-                yield return new WaitForSeconds(delay);
+                while (true)
+                {
+                    yield return new WaitForSeconds(Random.Range(delayMin, delayMax));
+                    action?.Invoke();
+                }
             }
-        }
         
-        /// <param name="delayMin">Minimum delay in seconds</param>
-        /// <param name="delayMax">Maximum delay in seconds</param>
-        /// <param name="action">Action to invoke</param>
-        public static IEnumerator FireAndRandomDelayLoopRoutine(float delayMin, float delayMax, Action action)
-        {
-            while (true)
+            /// <param name="delay">Delay in seconds</param>
+            /// <param name="action">Action to invoke</param>
+            public static IEnumerator FireAndDelayLoopRoutine(float delay, Action action)
             {
-                action?.Invoke();
-                yield return new WaitForSeconds(Random.Range(delayMin, delayMax));
+                while (true)
+                {
+                    action?.Invoke();
+                    yield return new WaitForSeconds(delay);
+                }
+            }
+        
+            /// <param name="delayMin">Minimum delay in seconds</param>
+            /// <param name="delayMax">Maximum delay in seconds</param>
+            /// <param name="action">Action to invoke</param>
+            public static IEnumerator FireAndRandomDelayLoopRoutine(float delayMin, float delayMax, Action action)
+            {
+                while (true)
+                {
+                    action?.Invoke();
+                    yield return new WaitForSeconds(Random.Range(delayMin, delayMax));
+                }
             }
         }
     }

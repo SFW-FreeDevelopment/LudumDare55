@@ -1,59 +1,59 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class EncounterManager : MonoBehaviour
+namespace LD55.Managers
 {
-    [SerializeField] public LayerMask encounterZone;
-    [SerializeField] public Transform player;
-
-    private int count;
-
-    private void OnEnable()
+    public class EncounterManager : MonoBehaviour
     {
-        EventManager.OnPlayerMoved += EventManagerOnPlayerMoved;
-    }
+        [SerializeField] public LayerMask encounterZone;
+        [SerializeField] public Transform player;
 
-    private void OnDisable()
-    {
-        EventManager.OnPlayerMoved -= EventManagerOnPlayerMoved;
-    }
+        private int count;
 
-    private void EventManagerOnPlayerMoved()
-    {
-        var inEncounterZone = InEncounterZone();
-        if (inEncounterZone)
+        private void OnEnable()
         {
-            var encounterCheck = DoEncounterRoll();
-            if (encounterCheck)
+            EventManager.OnPlayerMoved += EventManagerOnPlayerMoved;
+        }
+
+        private void OnDisable()
+        {
+            EventManager.OnPlayerMoved -= EventManagerOnPlayerMoved;
+        }
+
+        private void EventManagerOnPlayerMoved()
+        {
+            var inEncounterZone = InEncounterZone();
+            if (inEncounterZone)
             {
-                DoEncounter();
+                var encounterCheck = DoEncounterRoll();
+                if (encounterCheck)
+                {
+                    DoEncounter();
+                }
             }
         }
-    }
 
-    private bool DoEncounterRoll()
-    {
-        if (Random.Range(1, 100) <= 100)
+        private bool DoEncounterRoll()
         {
-            return true;
+            if (Random.Range(1, 100) <= 100)
+            {
+                return true;
+            }
+            return false;
         }
-        return false;
-    }
 
-    private void DoEncounter()
-    {
-        Debug.Log($"Encountered pokemon {count}");
-        count++;
-    }
-
-    private bool InEncounterZone()
-    {
-        if (Physics2D.OverlapCircle(player.position, 0.2f) != null)
+        private void DoEncounter()
         {
-            return true;
+            Debug.Log($"Encountered pokemon {count}");
+            count++;
         }
-        return false;
+
+        private bool InEncounterZone()
+        {
+            if (Physics2D.OverlapCircle(player.position, 0.2f) != null)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

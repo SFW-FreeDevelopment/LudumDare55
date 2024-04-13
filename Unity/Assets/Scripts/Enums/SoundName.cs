@@ -1,6 +1,9 @@
-﻿public enum SoundName
+﻿namespace LD55.Enums
 {
-    Click,
-    Startup,
-    Close
+    public enum SoundName
+    {
+        Click,
+        Startup,
+        Close
+    }
 }

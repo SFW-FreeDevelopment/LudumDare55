@@ -1,27 +1,30 @@
 ﻿using UnityEngine;
 
-public abstract class GameSingleton<T> : MonoBehaviour where T : GameSingleton<T>
+namespace LD55
 {
-    public static T Instance { get; private set; }
+    public abstract class GameSingleton<T> : MonoBehaviour where T : GameSingleton<T>
+    {
+        public static T Instance { get; private set; }
         
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
+        private void Awake()
         {
-            Destroy(gameObject);
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                DontDestroyOnLoad(gameObject);
+                Instance = (T)this;
+            }
         }
-        else
+
+        private void Start()
         {
-            DontDestroyOnLoad(gameObject);
-            Instance = (T)this;
+            if (Instance == this)
+                InitSingletonInstance();
         }
-    }
 
-    private void Start()
-    {
-        if (Instance == this)
-            InitSingletonInstance();
+        protected abstract void InitSingletonInstance();
     }
-
-    protected abstract void InitSingletonInstance();
 }

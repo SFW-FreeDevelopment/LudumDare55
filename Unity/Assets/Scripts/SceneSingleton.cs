@@ -1,26 +1,29 @@
 ﻿using UnityEngine;
 
-public abstract class SceneSingleton<T> : MonoBehaviour where T : SceneSingleton<T>
+namespace LD55
 {
-    public static T Instance { get; private set; }
-
-    private void Awake()
+    public abstract class SceneSingleton<T> : MonoBehaviour where T : SceneSingleton<T>
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = (T)this;
-        }
-    }
+        public static T Instance { get; private set; }
 
-    private void Start()
-    {
-        if (Instance == this)
-            InitSingletonInstance();
-    }
+        private void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instance = (T)this;
+            }
+        }
 
-    protected abstract void InitSingletonInstance();
+        private void Start()
+        {
+            if (Instance == this)
+                InitSingletonInstance();
+        }
+
+        protected abstract void InitSingletonInstance();
+    }
 }

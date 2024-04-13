@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Models
+namespace LD55.Models
 {
     public class GameState
     {

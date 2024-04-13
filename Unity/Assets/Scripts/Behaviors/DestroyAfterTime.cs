@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 
-public class DestroyAfterTime : MonoBehaviour
+namespace LD55.Behaviors
 {
-    [SerializeField] private float _time = 3;
+    public class DestroyAfterTime : MonoBehaviour
+    {
+        [SerializeField] private float _time = 3;
         
-    private void Start() => Destroy(gameObject, _time);
+        private void Start() => Destroy(gameObject, _time);
+    }
 }

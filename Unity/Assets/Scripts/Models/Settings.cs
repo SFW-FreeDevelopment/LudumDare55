@@ -1,4 +1,4 @@
-﻿namespace Models
+﻿namespace LD55.Models
 {
     public class Settings
     {
