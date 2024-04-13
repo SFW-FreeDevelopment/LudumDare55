@@ -7,8 +7,10 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public Transform movePoint;
+    private int count = 0;
 
     public LayerMask whatStopsMovement;
+    public LayerMask encounterZone;
 
     // Start is called before the first frame update
     void Start()
@@ -20,20 +22,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var moved = MoveMovepoint();
-        if (moved)
-        {
-            EventManager.PlayerMoved();
-        }
-    }
+        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
 
-    private void FixedUpdate()
-    {
-        MovePlayer();
-    }
-
-    private bool MoveMovepoint()
-    {
         if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
         {
             if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
@@ -41,7 +31,8 @@ public class PlayerController : MonoBehaviour
                 if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, whatStopsMovement))
                 {
                     movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
-                    return true;
+                    CheckForEncounters();
+                    return;
                 }
             }
 
@@ -50,15 +41,22 @@ public class PlayerController : MonoBehaviour
                 if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), .2f, whatStopsMovement))
                 {
                     movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
-                    return true;
+                    CheckForEncounters();
+                    return;
                 }
             }
         }
-        return false;
     }
 
-    private void MovePlayer()
+    private void CheckForEncounters()
     {
-        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
+        if (Physics2D.OverlapCircle(transform.position, 0.2f, encounterZone) != null)
+        {
+            if (Random.Range(1, 101) <= 100)
+            {
+                Debug.Log($"Encountered pokemon {count}");
+                count++;
+            }
+        }
     }
 }
