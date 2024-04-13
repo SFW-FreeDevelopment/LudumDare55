@@ -1,4 +1,7 @@
+using System;
 using LD55.Enums;
+using LD55.Models;
+using TMPro;
 using UnityEngine;
 
 namespace LD55.ScriptableObjects
@@ -15,6 +18,12 @@ namespace LD55.ScriptableObjects
         [SerializeField] private string _description;
         public string Description => _description;
         
+        [SerializeField] private Sprite _sprite;
+        public Sprite Sprite => _sprite;
+        
+        [SerializeField] private Sprite _image;
+        public Sprite Image => _image;
+        
         [SerializeField] private MonsterType _type;
         public MonsterType Type => _type;
         
@@ -23,5 +32,8 @@ namespace LD55.ScriptableObjects
         
         [SerializeField] private byte _catchRate;
         public byte CatchRate => _catchRate;
+
+        [SerializeField] private LearnableMove[] _learnableMoves = Array.Empty<LearnableMove>();
+        public LearnableMove[] LearnableMoves => _learnableMoves;
     }
 }
