@@ -8,8 +8,8 @@ namespace LD55.World
 {
     public class Trainer : TriggerTileBase
     {
-        [SerializeField] private ScriptableObjects.Trainer _data;
-        public ScriptableObjects.Trainer Data => _data;
+        [SerializeField] private TrainerData _data;
+        public TrainerData Data => _data;
 
         [SerializeField] private bool _hasFought;
         public bool HasFought => _hasFought;

@@ -951,7 +951,7 @@ GameObject:
   - component: {fileID: 84728155}
   - component: {fileID: 84728154}
   m_Layer: 6
-  m_Name: Trainer Matilida
+  m_Name: Witch Matilida
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -990,7 +990,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d80fda50e247f795d02efaa10e90ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data: {fileID: 11400000, guid: 6828a7ab8bd01f0449e55f0adc6d10f5, type: 2}
+  _data:
+    _name: Witch Matilida
+    _sprite: {fileID: -1732179036, guid: 1606c55df74571d4f9c35ceb782334e2, type: 3}
+    _image: {fileID: 21300000, guid: 72ee4b2a17d255f41a054fd1a2d8f957, type: 3}
+    _preBattleDialogue: Darkness will consume you!
+    _postBattleDialogue: The darkness consumed me...
+    _party:
+      _monsters:
+      - _monster: {fileID: 11400000, guid: 64d8779aae13f8243affb5a50061a4d8, type: 2}
+        Level: 2
+        Experience: 10
+        MaxHealth: 12
+        CurrentHealth: 12
+      - _monster: {fileID: 11400000, guid: 87a4367e0f6981d4da686d7626e23bc0, type: 2}
+        Level: 2
+        Experience: 10
+        MaxHealth: 12
+        CurrentHealth: 12
   _hasFought: 0
 --- !u!58 &84728156
 CircleCollider2D:
@@ -9028,7 +9045,7 @@ GameObject:
   - component: {fileID: 1103064611}
   - component: {fileID: 1103064610}
   m_Layer: 6
-  m_Name: Trainer Bethany
+  m_Name: Witch Bethany
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9067,7 +9084,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d80fda50e247f795d02efaa10e90ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data: {fileID: 11400000, guid: f6dd9586645af53408bbf87d7a895c59, type: 2}
+  _data:
+    _name: Witch Bethany
+    _sprite: {fileID: -1732179036, guid: 1606c55df74571d4f9c35ceb782334e2, type: 3}
+    _image: {fileID: 21300000, guid: 72ee4b2a17d255f41a054fd1a2d8f957, type: 3}
+    _preBattleDialogue: You are no match for my power!
+    _postBattleDialogue: It seems I've met my match...
+    _party:
+      _monsters:
+      - _monster: {fileID: 11400000, guid: 64d8779aae13f8243affb5a50061a4d8, type: 2}
+        Level: 2
+        Experience: 10
+        MaxHealth: 12
+        CurrentHealth: 12
+      - _monster: {fileID: 11400000, guid: 87a4367e0f6981d4da686d7626e23bc0, type: 2}
+        Level: 2
+        Experience: 10
+        MaxHealth: 12
+        CurrentHealth: 12
   _hasFought: 0
 --- !u!58 &1103064612
 CircleCollider2D:

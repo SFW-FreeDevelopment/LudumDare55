@@ -2,10 +2,10 @@
 using LD55.Models;
 using UnityEngine;
 
-namespace LD55.ScriptableObjects
+namespace LD55.Models
 {
-    [CreateAssetMenu(menuName = "LD55/Trainer")]
-    public class Trainer : ScriptableObject
+    [Serializable]
+    public class TrainerData
     {
         [SerializeField] private string _name;
         public string Name => _name;
