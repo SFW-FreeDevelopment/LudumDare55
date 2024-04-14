@@ -263,30 +263,28 @@ namespace LD55
         private Effectiveness GetModifier(MonsterType defenderType, MonsterType moveType)
         {
             //Check the moveType being used to get the strong types and weak types.
-            var typeMove = MonsterType.Fire; //hardcoded test value
-            var typeDefender = MonsterType.Fire; //hardcoded test value
 
-            switch (typeMove)
+            switch (moveType)
             {
                 case MonsterType.Fire:
-                    if (typeDefender == MonsterType.Fire ||
-                        typeDefender == MonsterType.Rock)
+                    if (defenderType == MonsterType.Fire ||
+                        defenderType == MonsterType.Rock)
                     {
                         return Effectiveness.Ineffective;
                     }
-                    else if (typeDefender == MonsterType.Dark)
+                    else if (defenderType == MonsterType.Dark)
                     {
                         return Effectiveness.Effective;
                     }
 
                     return Effectiveness.Normal;
                 case MonsterType.Dark:
-                    if (typeDefender == MonsterType.Dark ||
-                        typeDefender == MonsterType.Fire)
+                    if (defenderType == MonsterType.Dark ||
+                        defenderType == MonsterType.Fire)
                     {
                         return Effectiveness.Ineffective;
                     }
-                    else if (typeDefender == MonsterType.Fel)
+                    else if (defenderType == MonsterType.Fel)
                     {
                         return Effectiveness.Effective;
                     }
