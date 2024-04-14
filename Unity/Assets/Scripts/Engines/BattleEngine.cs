@@ -12,12 +12,14 @@ namespace LD55
         public bool HitSuccess { get; set; }
         public decimal Damage { get; set; }
         public string Effectiveness { get; set; }
+        public BattleMove moveUsed { get; set; }
     }
 
     public interface IBattleEngine
     {
         bool TryCapture(MonsterInstance monsterInstance, string shardOrStone);
         HitResult TryAttack(MonsterInstance playerInstance, MonsterInstance monsterInstance, BattleMove battleMove);
+
     }
 
     public class BattleEngine : IBattleEngine
@@ -119,7 +121,7 @@ namespace LD55
             return normal;
         }
 
-        public HitResult TryAttack(MonsterInstance playerInstance, MonsterInstance monsterInstance, BattleMove battleMove)
+        public HitResult TryAttack(MonsterInstance attackerInstance, MonsterInstance defenderInstance, BattleMove battleMove)
         {
             var hitResult = new HitResult();
             var accuracyCheck = DoesMoveHit(battleMove.Accuracy);
@@ -133,7 +135,7 @@ namespace LD55
 
             //Move Hit
             hitResult.HitSuccess = true;
-            string monsterIntanceType = ""; //monsterIntance.Type
+            string monsterIntanceType = ""; //defenderInstance.Type
             var modifier = GetModifier(monsterIntanceType, battleMove.MoveType.ToString()); 
             
             switch(modifier)
@@ -149,14 +151,52 @@ namespace LD55
                     break;
             }
 
-            var playerIntanceAttack = 15;
-            var monsterIntanceDefence = 10;
-            var damage = CalculateDamage(playerInstance.Level, battleMove.Damage, playerIntanceAttack, monsterIntanceDefence, modifier);
-            hitResult.Damage = damage;
+            var playerIntanceAttack = 15; //need to add to monsterinstance
+            var monsterIntanceDefence = 10; //need to add to monsterinstance
+
+            if(battleMove.Category == Enums.BattleMoveCategory.Attack)
+            {
+                var damage = CalculateDamage(attackerInstance.Level, battleMove.Damage, playerIntanceAttack, monsterIntanceDefence, modifier);
+                defenderInstance.TakeDamage((int)damage);
+                hitResult.Damage = (int)damage;
+                hitResult.moveUsed = battleMove;
+                return hitResult;
+            }
             
+            if(battleMove.Category == Enums.BattleMoveCategory.Status)
+            {
+                ProcessStatus(battleMove, attackerInstance, defenderInstance);
+                hitResult.Damage = battleMove.Damage;
+                hitResult.moveUsed = battleMove;
+                return hitResult;
+            }
+
+            //Should not reach here
+            hitResult.HitSuccess = false;
+            hitResult.moveUsed = battleMove;
+            hitResult.Damage = 0;
             return hitResult;
         }
 
+        private bool ProcessStatus(BattleMove battleMove, MonsterInstance attackerInstance, MonsterInstance defenderInstance)
+        {
+            switch(battleMove.Name)
+            {
+                case "Attack Up":
+                    //attackerInstance.AttakModifier += battleMove.Value;
+                    break;
+                case "Attack Down":
+                    //defenderInstance.AttakModifier -= battleMove.Value;
+                    break;
+                case "Defence Up":
+                    //attackerInstance.DefenceModifier += battleMove.Value;
+                    break;
+                case "Defence Down":
+                    //defenderInstance.AttakModifier -= battleMove.Value;
+                    break;
+            }
+            return true;
+        }
 
     }
     
