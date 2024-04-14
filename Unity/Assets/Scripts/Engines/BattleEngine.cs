@@ -12,21 +12,39 @@ namespace LD55
         public bool HitSuccess { get; set; }
         public decimal Damage { get; set; }
         public string Effectiveness { get; set; }
+        public string Message { get; set; }
+        public BattleMove moveUsed { get; set; }
+    }
+
+    public class CaptureResult
+    {
+        public bool CaptureSuccess { get; set; }
+        public int Roll { get; set; }
+        public int CaptureCheck { get; set; }
+        public string ShardOrStone { get; set; }
+        public string Message { get; set; }
     }
 
     public interface IBattleEngine
     {
-        bool TryCapture(MonsterInstance monsterInstance, string shardOrStone);
+        CaptureResult TryCapture(MonsterInstance monsterInstance, string shardOrStone);
         HitResult TryAttack(MonsterInstance playerInstance, MonsterInstance monsterInstance, BattleMove battleMove);
+
     }
 
     public class BattleEngine : IBattleEngine
     {
-        public bool TryCapture(MonsterInstance monsterInstance, string shardOrStone)
+        public CaptureResult TryCapture(MonsterInstance monsterInstance, string shardOrStone)
         {
-            return DoesCapture(monsterInstance, shardOrStone);
-        }
+            CaptureResult result = DoesCapture(monsterInstance, shardOrStone);
+            
+            if (result.CaptureSuccess == true)
+            {
+                //Do Capture;
+            }
 
+            return result;
+        }
 
         /// <summary>
         /// Determine if the demon is captured
@@ -35,8 +53,10 @@ namespace LD55
         /// <param name="monsterInstance"></param>
         /// <param name="shardModifer"></param>
         /// <returns></returns>
-        private bool DoesCapture(MonsterInstance monsterInstance, string shardOrStone)
+        private CaptureResult DoesCapture(MonsterInstance monsterInstance, string shardOrStone)
         {
+            CaptureResult captureResult = new CaptureResult();
+            captureResult.ShardOrStone = shardOrStone;
             const decimal shard = 1.1m;
             const decimal stone = .9m;
             const int shardMaxN = 75;
@@ -56,6 +76,7 @@ namespace LD55
 
             System.Random rand = new System.Random();
             var n = rand.Next(1, maxN);
+            captureResult.Roll = n;
 
             var captureDifficulty = captureRate * hpModifier * itemModifier;
 
@@ -63,14 +84,21 @@ namespace LD55
             {
                 captureDifficulty += monsterLevel;
             }
+            captureResult.CaptureCheck = (int)captureDifficulty;
 
             if (n > captureDifficulty)
             {
-                return true;
+                captureResult.CaptureSuccess = true;
+                captureResult.Message = $"{monsterInstance.Id} was captured";
+                return captureResult;
             }
 
-            return false;
+            captureResult.CaptureSuccess = false;
+            captureResult.Message = $"{monsterInstance.Id} resisted capture!";
+            return captureResult;
         }
+
+
 
         /// <summary>
         /// Generate random number between 1 and 100. If random number is less than the move accuracy, the move hits (true). Else the move missed (false).
@@ -119,7 +147,7 @@ namespace LD55
             return normal;
         }
 
-        public HitResult TryAttack(MonsterInstance playerInstance, MonsterInstance monsterInstance, BattleMove battleMove)
+        public HitResult TryAttack(MonsterInstance attackerInstance, MonsterInstance defenderInstance, BattleMove battleMove)
         {
             var hitResult = new HitResult();
             var accuracyCheck = DoesMoveHit(battleMove.Accuracy);
@@ -128,12 +156,13 @@ namespace LD55
             {
                 hitResult.HitSuccess = false;
                 hitResult.Damage = 0;
+                hitResult.Message = GenerateMessage(battleMove, hitResult, attackerInstance, defenderInstance);
                 return hitResult;
             }
 
             //Move Hit
             hitResult.HitSuccess = true;
-            string monsterIntanceType = ""; //monsterIntance.Type
+            string monsterIntanceType = ""; //defenderInstance.Type
             var modifier = GetModifier(monsterIntanceType, battleMove.MoveType.ToString()); 
             
             switch(modifier)
@@ -149,13 +178,78 @@ namespace LD55
                     break;
             }
 
-            var playerIntanceAttack = 15;
-            var monsterIntanceDefence = 10;
-            var damage = CalculateDamage(playerInstance.Level, battleMove.Damage, playerIntanceAttack, monsterIntanceDefence, modifier);
-            hitResult.Damage = damage;
+            var playerIntanceAttack = 15; //need to add to monsterinstance
+            var monsterIntanceDefence = 10; //need to add to monsterinstance
+
+            if(battleMove.Category == Enums.BattleMoveCategory.Attack)
+            {
+                var damage = CalculateDamage(attackerInstance.Level, battleMove.Damage, playerIntanceAttack, monsterIntanceDefence, modifier);
+                defenderInstance.TakeDamage((int)damage);
+                hitResult.Damage = (int)damage;
+                hitResult.moveUsed = battleMove;
+                hitResult.Message = GenerateMessage(battleMove, hitResult, attackerInstance, defenderInstance);
+                return hitResult;
+            }
             
+            if(battleMove.Category == Enums.BattleMoveCategory.Status)
+            {
+                ProcessStatus(battleMove, attackerInstance, defenderInstance);
+                hitResult.Damage = battleMove.Damage;
+                hitResult.moveUsed = battleMove;
+                hitResult.Message = GenerateMessage(battleMove, hitResult, attackerInstance, defenderInstance);
+                return hitResult;
+            }
+
+            //Should not reach here
+            hitResult.HitSuccess = false;
+            hitResult.moveUsed = battleMove;
+            hitResult.Damage = 0;
+            hitResult.Message = $"Something went wrong, your move missed. {battleMove.Name} was a terrible attack";
             return hitResult;
         }
+
+        private bool ProcessStatus(BattleMove battleMove, MonsterInstance attackerInstance, MonsterInstance defenderInstance)
+        {
+            switch(battleMove.Name)
+            {
+                case "Attack Up":
+                    //attackerInstance.AttakModifier += battleMove.Value;
+                    break;
+                case "Attack Down":
+                    //defenderInstance.AttakModifier -= battleMove.Value;
+                    break;
+                case "Defence Up":
+                    //attackerInstance.DefenceModifier += battleMove.Value;
+                    break;
+                case "Defence Down":
+                    //defenderInstance.AttakModifier -= battleMove.Value;
+                    break;
+            }
+            return true;
+        }
+
+
+        private string GenerateMessage(BattleMove battleMove, HitResult hitResult, MonsterInstance attackerInstance, MonsterInstance defenderInstance)
+        {
+            string result = string.Empty;
+            if(hitResult.HitSuccess == false)
+            {
+                result = $"{attackerInstance.Id} used {battleMove.name}... it missed! ";
+            }
+            
+            if (battleMove.Category == Enums.BattleMoveCategory.Attack && hitResult.HitSuccess == true)
+            {
+                result = $"{attackerInstance.Id} used {battleMove.name} on {defenderInstance.Id}. It was {hitResult.Effectiveness}. {defenderInstance} took {hitResult.Damage}";
+            }
+
+            if (battleMove.Category == Enums.BattleMoveCategory.Status && hitResult.HitSuccess == true)
+            {
+                result = $"{attackerInstance.Id} used {battleMove.name} on {defenderInstance.Id}. {defenderInstance} took {hitResult.Damage}";
+            }
+
+            return result;
+        }
+
 
 
     }
