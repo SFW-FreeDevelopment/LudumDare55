@@ -13,6 +13,7 @@ namespace LD55
         ItemResult UseItem(MonsterInstance attackerInstance, MonsterInstance defenderIntance, string item);
         FleeResult TryFlee(MonsterInstance attackerInstance, MonsterInstance defenderIntance);
 
+
     }
 
     public class HitResult
