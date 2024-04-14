@@ -392,9 +392,9 @@ namespace LD55
             if (battleMove.Category == Enums.BattleMoveCategory.Attack && hitResult.HitSuccess == true)
             {
                 result = $"{attackerInstance.Id} used {battleMove.name} on {defenderInstance.Id}.";
-                if (hitResult.Effectiveness != "Normal")
+                if (hitResult.Effectiveness != Effectiveness.Normal)
                 {
-                    result += $" It was {hitResult.Effectiveness}.";
+                    result += $" It was {hitResult.Effectiveness.ToString()}.";
                 }
                         
                 result += $"{defenderInstance} took {hitResult.Damage}";
