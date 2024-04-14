@@ -15,6 +15,6 @@ MonoBehaviour:
   _name: Shadow Strike
   _description: Unleash lethal attack from the shadows.
   _category: 0
-  _moveType: 0
+  _moveType: 1
   _damage: 55
   _accuracy: 95
