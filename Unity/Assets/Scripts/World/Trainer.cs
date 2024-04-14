@@ -22,6 +22,7 @@ namespace LD55.World
         protected override void Action()
         {
             Debug.Log("Trainer encountered!");
+            DialogueManager.Instance.IsTalking = true;
             if (HasFought)
             {
                 DialogueManager.Instance.Show(new DialogueModel
@@ -31,7 +32,7 @@ namespace LD55.World
                     Sprite = Data.Image,
                     IsTrainer = true,
                     Action = () => {
-                        // Do nothing since we fought them before
+                        DialogueManager.Instance.IsTalking = false;
                     }
                 });
             }
@@ -44,6 +45,7 @@ namespace LD55.World
                     Sprite = Data.Image,
                     IsTrainer = true,
                     Action = () => {
+                        DialogueManager.Instance.IsTalking = false;
                         BattleManager.Instance.Show(new BattleEnemyModel
                         {
                             Name = Data.Name,

@@ -11,8 +11,6 @@ namespace LD55.Managers
         public bool IsBattling { get; set; }
         
         [SerializeField] private GameObject _canvas;
-        
-        public BattleEnemyModel BattleEnemyModel { get; set; }
 
         public BattleState State { get; set; } = new BattleState();
 
@@ -41,6 +39,41 @@ namespace LD55.Managers
                 
                 // TODO: Battle things
             }
+        }
+
+        private void Update()
+        {
+            if (!IsBattling || !State.WaitingForPlayerInput) return;
+
+            if (State.CurrentMenu == SubMenu.Fight)
+            {
+
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    SelectBack();
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+                {
+                    // TODO: Lock in move
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+                {
+                    // TODO: Lock in move
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
+                {
+                    // TODO: Lock in move
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
+                {
+                    // TODO: Lock in move
+                }
+            }
+        }
+
+        public void SelectMove()
+        {
+            
         }
 
         public void Show(BattleEnemyModel model)
@@ -87,17 +120,26 @@ namespace LD55.Managers
 
         public void SelectFight()
         {
+            State.CurrentMenu = SubMenu.Fight;
             // TODO: Open move select UI
         }
 
         public void SelectParty()
         {
+            State.CurrentMenu = SubMenu.Party;
             // TODO: Open party select UI
         }
 
         public void SelectItems()
         {
+            State.CurrentMenu = SubMenu.Items;
             // TODO: Open item select UI
+        }
+
+        public void SelectBack()
+        {
+            State.CurrentMenu = null;
+            // TODO: Close all menus
         }
 
         public void SelectRun()

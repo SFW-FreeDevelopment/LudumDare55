@@ -10,7 +10,6 @@ namespace LD55.Models
         public TimeSpan TimeElapsed => DateTime.Now - TimeStarted;
         public uint StepCount { get; set; }
         public PlayerPosition PlayerPosition { get; set; } = new PlayerPosition(0, 0);
-        
     }
 
     public class PlayerPosition

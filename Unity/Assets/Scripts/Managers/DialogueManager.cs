@@ -15,6 +15,8 @@ namespace LD55.Managers
         [SerializeField] private Image _bigImage;
         [SerializeField] private Button _continueButton;
         
+        public bool IsTalking { get; set; }
+        
         private DialogueModel Model { get; set; }
         
         protected override void InitSingletonInstance()
