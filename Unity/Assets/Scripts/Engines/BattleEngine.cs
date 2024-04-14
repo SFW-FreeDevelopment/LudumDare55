@@ -1,5 +1,7 @@
+using LD55.Enums;
 using LD55.Models;
 using LD55.ScriptableObjects;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -20,7 +22,7 @@ namespace LD55
     {
         public bool HitSuccess { get; set; }
         public decimal Damage { get; set; }
-        public string Effectiveness { get; set; }
+        public Effectiveness Effectiveness { get; set; }
         public string Message { get; set; }
         public BattleMove moveUsed { get; set; }
     }
@@ -45,6 +47,13 @@ namespace LD55
     {
         public bool FleeSuccess { get; set; }
         public string FleeMessage { get; set; }
+    }
+
+    public enum Effectiveness
+    {
+        Normal,
+        Effective,
+        Ineffective
     }
 
 
@@ -237,7 +246,8 @@ namespace LD55
         /// <returns></returns>
         private decimal CalculateDamage(int level, int power, int attack, int defence, decimal modifier)
         {
-            var levelModifier = ((2 * level)/5)+2;
+            var random = new System.Random();
+            var levelModifier = ((2 * level)/5) + random.Next(1,3);
             var attackDefenceRatio = attack/defence;
             var calculateNumerator = levelModifier * power * attackDefenceRatio;
             var resultBeforeModifier = (calculateNumerator / 50) + 2;
@@ -250,15 +260,42 @@ namespace LD55
         /// Gets the modifier to use for damage. 1.3 for super, 1 for regular, .85 for not effective
         /// </summary>
         /// <returns></returns>
-        private decimal GetModifier(string type1, string type2)
+        private Effectiveness GetModifier(MonsterType defenderType, MonsterType moveType)
         {
-            const decimal effective = 1.3m;
-            const decimal normal = 1.0m;
-            const decimal notEffective = .85m;
+            //Check the moveType being used to get the strong types and weak types.
+            var typeMove = MonsterType.Fire; //hardcoded test value
+            var typeDefender = MonsterType.Fire; //hardcoded test value
 
-            //logic for effectiveness
+            switch (typeMove)
+            {
+                case MonsterType.Fire:
+                    if (typeDefender == MonsterType.Fire ||
+                        typeDefender == MonsterType.Rock)
+                    {
+                        return Effectiveness.Ineffective;
+                    }
+                    else if (typeDefender == MonsterType.Dark)
+                    {
+                        return Effectiveness.Effective;
+                    }
 
-            return normal;
+                    return Effectiveness.Normal;
+                case MonsterType.Dark:
+                    if (typeDefender == MonsterType.Dark ||
+                        typeDefender == MonsterType.Fire)
+                    {
+                        return Effectiveness.Ineffective;
+                    }
+                    else if (typeDefender == MonsterType.Fel)
+                    {
+                        return Effectiveness.Effective;
+                    }
+
+                    return Effectiveness.Normal;
+
+                default: return Effectiveness.Normal;
+
+            }
         }
 
         public HitResult TryAttack(MonsterInstance attackerInstance, MonsterInstance defenderInstance, BattleMove battleMove)
@@ -277,18 +314,21 @@ namespace LD55
             //Move Hit
             hitResult.HitSuccess = true;
             string monsterIntanceType = ""; //defenderInstance.Type
-            var modifier = GetModifier(monsterIntanceType, battleMove.MoveType.ToString()); 
-            
+            var modifier = GetModifier(defenderInstance.Monster.Type, battleMove.MoveType);
+            var modifierValue = 1m;
             switch(modifier)
             {
-                case 1.3m:
-                    hitResult.Effectiveness = "Effective";
+                case Effectiveness.Effective:
+                    hitResult.Effectiveness = Effectiveness.Effective;
+                    modifierValue = 1.3m;
                     break;
-                case 1.0m:
-                    hitResult.Effectiveness = "Normal";
+                case Effectiveness.Normal:
+                    hitResult.Effectiveness = Effectiveness.Normal;
+                    modifierValue = 1m;
                     break;
-                case .85m:
-                    hitResult.Effectiveness = "Not Effective";
+                case Effectiveness.Ineffective:
+                    hitResult.Effectiveness = Effectiveness.Ineffective;
+                    modifierValue = .85m;
                     break;
             }
 
@@ -297,7 +337,7 @@ namespace LD55
 
             if(battleMove.Category == Enums.BattleMoveCategory.Attack)
             {
-                var damage = CalculateDamage(attackerInstance.Level, battleMove.Damage, playerIntanceAttack, monsterIntanceDefence, modifier);
+                var damage = CalculateDamage(attackerInstance.Level, battleMove.Damage, playerIntanceAttack, monsterIntanceDefence, modifierValue);
                 defenderInstance.TakeDamage((int)damage);
                 hitResult.Damage = (int)damage;
                 hitResult.moveUsed = battleMove;
@@ -353,7 +393,13 @@ namespace LD55
             
             if (battleMove.Category == Enums.BattleMoveCategory.Attack && hitResult.HitSuccess == true)
             {
-                result = $"{attackerInstance.Id} used {battleMove.name} on {defenderInstance.Id}. It was {hitResult.Effectiveness}. {defenderInstance} took {hitResult.Damage}";
+                result = $"{attackerInstance.Id} used {battleMove.name} on {defenderInstance.Id}.";
+                if (hitResult.Effectiveness != "Normal")
+                {
+                    result += $" It was {hitResult.Effectiveness}.";
+                }
+                        
+                result += $"{defenderInstance} took {hitResult.Damage}";
             }
 
             if (battleMove.Category == Enums.BattleMoveCategory.Status && hitResult.HitSuccess == true)
