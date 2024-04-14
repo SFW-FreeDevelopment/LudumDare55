@@ -15,6 +15,6 @@ MonoBehaviour:
   _name: Pyro Tomb
   _description: Drops the heat on enemies.
   _category: 0
-  _moveType: 0
+  _moveType: 1
   _damage: 70
   _accuracy: 90

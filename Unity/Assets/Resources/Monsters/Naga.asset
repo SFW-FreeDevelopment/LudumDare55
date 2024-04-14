@@ -17,7 +17,7 @@ MonoBehaviour:
   _description: It's a snake!
   _sprite: {fileID: 1109081008, guid: cfd7459c9d8486349b620c1dc2f0e36d, type: 3}
   _image: {fileID: 21300000, guid: 77fefac7851d12d429d035e73367f8e6, type: 3}
-  _type: 0
+  _type: 3
   _baseExperience: 20
   _catchRate: 150
   _learnableMoves:

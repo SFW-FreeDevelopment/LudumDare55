@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Dark Matter Beam
   m_EditorClassIdentifier: 
   _name: Dark Matter Beam
-  _description: 
+  _description: All-powerful beam of concentrated dark matter
   _category: 0
   _moveType: 0
-  _damage: 0
-  _accuracy: 100
+  _damage: 125
+  _accuracy: 65

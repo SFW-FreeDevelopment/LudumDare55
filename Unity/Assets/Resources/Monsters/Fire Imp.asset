@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921ad77e4c4ebf6408384a6050404b94, type: 3}
   m_Name: Fire Imp
   m_EditorClassIdentifier: 
-  _id: 6
+  _id: 7
   _name: Fire Imp
   _description: 
   _sprite: {fileID: 0}
   _image: {fileID: 0}
-  _type: 0
+  _type: 1
   _baseExperience: 0
   _catchRate: 0
   _learnableMoves: []
+  _preBattleDialogue: 
+  _postBattleDialogue: 

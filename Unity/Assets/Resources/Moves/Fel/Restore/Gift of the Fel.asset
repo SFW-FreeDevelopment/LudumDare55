@@ -15,6 +15,6 @@ MonoBehaviour:
   _name: Gift of the Fel
   _description: Restore power of fel from the blood of demons!
   _category: 2
-  _moveType: 1
+  _moveType: 4
   _damage: 0
   _accuracy: 100

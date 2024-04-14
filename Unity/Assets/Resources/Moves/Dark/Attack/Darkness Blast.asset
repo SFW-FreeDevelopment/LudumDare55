@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07e0f5b2e8074e56b423020f4eed7f84, type: 3}
   m_Name: Darkness Blast
   m_EditorClassIdentifier: 
-  _name: 
-  _description: 
+  _name: Darkness Blast
+  _description: Unleashes a blast of dark energy!
   _category: 0
   _moveType: 0
-  _damage: 0
-  _accuracy: 100
+  _damage: 95
+  _accuracy: 85

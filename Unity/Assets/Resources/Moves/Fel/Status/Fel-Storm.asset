@@ -16,6 +16,6 @@ MonoBehaviour:
   _description: Surrounds the arena in magic flames for a few turns. Fel-type moves
     powered up.
   _category: 1
-  _moveType: 0
+  _moveType: 4
   _damage: 0
   _accuracy: 100

@@ -15,6 +15,6 @@ MonoBehaviour:
   _name: Fel Veil
   _description: Traps opponent in magic fire, inflicting damage each turn.
   _category: 1
-  _moveType: 1
+  _moveType: 4
   _damage: 0
   _accuracy: 100

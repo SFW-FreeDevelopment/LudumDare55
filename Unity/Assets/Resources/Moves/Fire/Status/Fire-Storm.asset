@@ -16,6 +16,6 @@ MonoBehaviour:
   _description: Surrounds the arena in flames for a few turns. Fire-type moves powered
     up.
   _category: 1
-  _moveType: 0
+  _moveType: 1
   _damage: 0
   _accuracy: 100
