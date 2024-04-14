@@ -221,6 +221,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: monster-spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96694cd95a7c35640993bcca2b4494bf
+      internalID: -1845859822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monster-spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ddb4917b73307741822ffe20230a4fc
+      internalID: -2133310183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monster-spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78e415b63afe9a2409484b550f2f110a
+      internalID: 1496406680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -235,7 +298,10 @@ TextureImporter:
       monster-spritesheet_4: 104630498
       monster-spritesheet_2: 1450990651
       monster-spritesheet_1: -1374309136
+      monster-spritesheet_7: 1496406680
       monster-spritesheet_0: 1109081008
+      monster-spritesheet_6: -2133310183
+      monster-spritesheet_5: -1845859822
       monster-spritesheet_3: -1758477368
   spritePackingTag: 
   pSDRemoveMatte: 0

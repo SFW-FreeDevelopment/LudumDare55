@@ -436,6 +436,26 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: 1, y: -2, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 12
+      m_TileSpriteIndex: 12
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 2, y: -2, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 12
+      m_TileSpriteIndex: 12
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: 3, y: -2, z: 0}
     second:
       serializedVersion: 2
@@ -501,6 +521,26 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 1
       m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -4, y: 0, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 10
+      m_TileSpriteIndex: 2
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -2, y: 0, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 11
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -759,22 +799,28 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 6b8a5897bef456e47b4eb0cae4a06c09, type: 2}
   - m_RefCount: 2
-    m_Data: {fileID: 11400000, guid: 5252007353c43df4bb8203893e5ad43f, type: 2}
-  - m_RefCount: 2
-    m_Data: {fileID: 11400000, guid: 4430c7ff11648b74382de60750a5634c, type: 2}
-  - m_RefCount: 3
-    m_Data: {fileID: 11400000, guid: 2f3a09db32c571941bd1d210a7fdb5fd, type: 2}
-  - m_RefCount: 3
-    m_Data: {fileID: 11400000, guid: 9170c765fbca3a745b97774ee5896e6d, type: 2}
-  - m_RefCount: 3
-    m_Data: {fileID: 11400000, guid: 84cb9e39ab1f6e044a48630c561e6f25, type: 2}
-  m_TileSpriteArray:
-  - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 2
+    m_Data: {fileID: 0}
+  - m_RefCount: 3
+    m_Data: {fileID: 0}
+  - m_RefCount: 3
+    m_Data: {fileID: 0}
+  - m_RefCount: 3
+    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: dfff5e5db8065d54687bbc5a92390304, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 021d9b0967f835e409f6e8e8ba1d73d6, type: 2}
+  - m_RefCount: 2
+    m_Data: {fileID: 11400000, guid: 12a0e871279aebd42ac444ab01927018, type: 2}
+  m_TileSpriteArray:
+  - m_RefCount: 1
+    m_Data: {fileID: 1496406680, guid: cfd7459c9d8486349b620c1dc2f0e36d, type: 3}
   - m_RefCount: 36
     m_Data: {fileID: -511190966, guid: 16bfa2116afa1934aa86d0e2ac386dff, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -2133310183, guid: cfd7459c9d8486349b620c1dc2f0e36d, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: -1374309136, guid: cfd7459c9d8486349b620c1dc2f0e36d, type: 3}
   - m_RefCount: 1
@@ -793,8 +839,10 @@ Tilemap:
     m_Data: {fileID: -1758477368, guid: cfd7459c9d8486349b620c1dc2f0e36d, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: 1109081008, guid: cfd7459c9d8486349b620c1dc2f0e36d, type: 3}
+  - m_RefCount: 2
+    m_Data: {fileID: -1845859822, guid: cfd7459c9d8486349b620c1dc2f0e36d, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 53
+  - m_RefCount: 57
     m_Data:
       e00: 1
       e01: 0
@@ -813,7 +861,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 53
+  - m_RefCount: 57
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   - m_RefCount: 0
     m_Data: {r: 6.3182e-41, g: 6.3182e-41, b: 6.3182e-41, a: 6.3182e-41}
@@ -1297,7 +1345,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Lesser Imp:'
+  m_text: 'Dark Spirit:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f5eba6063ec8a1040b089349fe19caee, type: 2}
   m_sharedMaterial: {fileID: -872940385159971534, guid: f5eba6063ec8a1040b089349fe19caee, type: 2}
@@ -1432,7 +1480,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1bbc17143368c9e42b96c82b3f0ae268, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 836691b21c2ca6a4c8e47cb5b858fd82, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3459,7 +3507,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hehehe, you're no match for me!
+  m_text: Darkness will consume you!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f5eba6063ec8a1040b089349fe19caee, type: 2}
   m_sharedMaterial: {fileID: -872940385159971534, guid: f5eba6063ec8a1040b089349fe19caee, type: 2}
@@ -3859,7 +3907,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1682711088
 RectTransform:
   m_ObjectHideFlags: 0
