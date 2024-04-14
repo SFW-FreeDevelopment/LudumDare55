@@ -15,6 +15,6 @@ MonoBehaviour:
   _name: Flame Tackle
   _description: Coated in flames tackling of opponent.
   _category: 0
-  _moveType: 0
+  _moveType: 1
   _damage: 40
   _accuracy: 100

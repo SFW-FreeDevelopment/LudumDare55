@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07e0f5b2e8074e56b423020f4eed7f84, type: 3}
   m_Name: Demon Tackle
   m_EditorClassIdentifier: 
-  _name: Tackle
+  _name: Demon Tackle
   _description: The demon tackles a demon.
   _category: 0
   _moveType: 0

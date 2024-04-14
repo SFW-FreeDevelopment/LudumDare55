@@ -15,6 +15,6 @@ MonoBehaviour:
   _name: Flame Cage
   _description: Decreases opponent Attack.
   _category: 1
-  _moveType: 1
+  _moveType: 4
   _damage: 0
   _accuracy: 100

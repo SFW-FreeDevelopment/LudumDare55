@@ -15,6 +15,6 @@ MonoBehaviour:
   _name: Fel Whip
   _description: Decreases opponent Defense.
   _category: 1
-  _moveType: 1
+  _moveType: 4
   _damage: 0
   _accuracy: 100

@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921ad77e4c4ebf6408384a6050404b94, type: 3}
   m_Name: Fel Spirit
   m_EditorClassIdentifier: 
-  _id: 0
-  _name: 
+  _id: 9
+  _name: Fel Spirit
   _description: 
   _sprite: {fileID: 0}
   _image: {fileID: 0}
-  _type: 0
+  _type: 4
   _baseExperience: 0
   _catchRate: 0
   _learnableMoves: []
+  _preBattleDialogue: 
+  _postBattleDialogue: 
