@@ -1,5 +1,7 @@
 ﻿using System.Collections;
+using System.Linq;
 using LD55.Models;
+using LD55.ScriptableObjects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,11 +12,16 @@ namespace LD55.Managers
     {
         public bool IsBattling { get; set; }
         
-        [SerializeField] private GameObject _canvas;
+        [SerializeField] private GameObject _canvas, _mainMenu, _fightMenu, _partyMenu, _itemsMenu;
 
+        [SerializeField] private GameObject _hitResultPane;
+        [SerializeField] private TextMeshProUGUI _hitResultText;
+        
         public BattleState State { get; set; } = new BattleState();
 
         private Coroutine CurrentBattleRoutine { get; set; }
+
+        private BattleEngine BattleEngine { get; set; } = new BattleEngine();
 
         [Header("Enemy")]
         [SerializeField] private Image _enemyImage;
@@ -34,57 +41,63 @@ namespace LD55.Managers
         {
             while (true)
             {
-                yield return new WaitForSeconds(0.1f);
-                if (State.WaitingForPlayerInput) continue;
+                yield return null;
                 
-                // TODO: Battle things
-            }
-        }
+                if (!IsBattling || !State.WaitingForPlayerInput) continue;
 
-        private void Update()
-        {
-            if (!IsBattling || !State.WaitingForPlayerInput) return;
-
-            if (State.CurrentMenu == null)
-            {
-                if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+                if (State.CurrentMenu == null)
                 {
-                    SelectFight();
+                    if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+                    {
+                        SelectFight();
+                    }
+                    else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+                    {
+                        SelectParty();
+                    }
+                    else if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
+                    {
+                        SelectItems();
+                    }
+                    else if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
+                    {
+                        SelectRun();
+                    }
                 }
-                else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+                else if (State.CurrentMenu == SubMenu.Fight)
                 {
-                    SelectParty();
-                }
-                else if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
-                {
-                    SelectItems();
-                }
-                else if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
-                {
-                    SelectRun();
-                }
-            }
-            else if (State.CurrentMenu == SubMenu.Fight)
-            {
-                if (Input.GetKeyDown(KeyCode.Escape))
-                {
-                    SelectBack();
-                }
-                else if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
-                {
-                    // TODO: Lock in move
-                }
-                else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
-                {
-                    // TODO: Lock in move
-                }
-                else if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
-                {
-                    // TODO: Lock in move
-                }
-                else if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
-                {
-                    // TODO: Lock in move
+                    if (Input.GetKeyDown(KeyCode.Escape))
+                    {
+                        SelectBack();
+                    }
+                    else if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+                    {
+                        var result = BattleEngine.TryAttack(State.CurrentMonster, State.Enemy.CurrentMonster, State.CurrentMonster.Monster.LearnableMoves[0].Move);
+                        RefreshUI();
+                        DisplayHitResult(result);
+                        CheckForBattleEnd();
+                    }
+                    else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+                    {
+                        var result = BattleEngine.TryAttack(State.CurrentMonster, State.Enemy.CurrentMonster, State.CurrentMonster.Monster.LearnableMoves[1].Move);
+                        RefreshUI();
+                        DisplayHitResult(result);
+                        CheckForBattleEnd();
+                    }
+                    else if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
+                    {
+                        var result = BattleEngine.TryAttack(State.CurrentMonster, State.Enemy.CurrentMonster, State.CurrentMonster.Monster.LearnableMoves[2].Move);
+                        RefreshUI();
+                        DisplayHitResult(result);
+                        CheckForBattleEnd();
+                    }
+                    else if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
+                    {
+                        var result = BattleEngine.TryAttack(State.CurrentMonster, State.Enemy.CurrentMonster, State.CurrentMonster.Monster.LearnableMoves[3].Move);
+                        RefreshUI();
+                        DisplayHitResult(result);
+                        CheckForBattleEnd();
+                    }
                 }
             }
         }
@@ -99,23 +112,64 @@ namespace LD55.Managers
             IsBattling = true;
             State = new BattleState
             {
-                Enemy = model
+                Enemy = model,
+                PlayerParty = PlayerDataManager.Instance.Party
             };
             
-            SetupEnemyUI(State.Enemy.Party.Monsters[0]);
-            SetupPlayerUI(State.Enemy.Party.Monsters[0]);
+            SetupEnemyUI(State.Enemy.CurrentMonster);
+            SetupPlayerUI(State.CurrentMonster);
             
             _canvas.SetActive(true);
             CurrentBattleRoutine = StartCoroutine(Routine());
         }
 
+        private void DisplayHitResult(HitResult hitResult)
+        {
+            _mainMenu.SetActive(false);
+            _fightMenu.SetActive(false);
+            _partyMenu.SetActive(false);
+            _itemsMenu.SetActive(false);
+            
+            _hitResultText.text = hitResult.Message;
+            _hitResultPane.gameObject.SetActive(true);
+            StartCoroutine(CoroutineTemplate.DelayAndFireRoutine(2.5f, () => {
+                _hitResultPane.gameObject.SetActive(false);
+                _mainMenu.SetActive(true);
+                State.CurrentMenu = null;
+            }));
+        }
+        
+        private void RefreshUI()
+        {
+            SetupEnemyUI(State.Enemy.CurrentMonster);
+            SetupPlayerUI(State.CurrentMonster);
+        }
+
+        private void CheckForBattleEnd()
+        {
+            var enemyWiped = State.Enemy.Party.Monsters.All(x => x.CurrentHealth == 0);
+            var playerWiped = State.PlayerParty.Monsters.All(x => x.CurrentHealth == 0);
+            if (enemyWiped || playerWiped)
+            {
+                if (playerWiped)
+                {
+                    Debug.Log("Oh nouuur");
+                    // TODO: Handle end battle
+                }
+                else
+                {
+                    // TODO: Handle end battle
+                }
+            }
+        }
+        
         private void SetupEnemyUI(MonsterInstance monster)
         {
             _enemyName.text = monster.Monster.Name;
             _enemyLevelText.text = $"Level {monster.Level}";
             _enemyTypeText.text = $"{monster.Monster.Type} Type";
             _enemyHealthSlider.maxValue = monster.MaxHealth;
-            _enemyHealthSlider.value = monster.MaxHealth;
+            _enemyHealthSlider.value = monster.CurrentHealth;
             _enemyImage.sprite = monster.Monster.Image;
         }
 
@@ -124,7 +178,7 @@ namespace LD55.Managers
             _playerName.text = monster.Monster.Name;
             _playerLevelText.text = $"Level {monster.Level}";
             _playerHealthSlider.maxValue = monster.MaxHealth;
-            _playerHealthSlider.value = monster.MaxHealth;
+            _playerHealthSlider.value = monster.CurrentHealth;
             _playerImage.sprite = monster.Monster.Image;
         }
         
@@ -133,31 +187,41 @@ namespace LD55.Managers
             StopCoroutine(CurrentBattleRoutine);
             CurrentBattleRoutine = null;
             IsBattling = false;
+            _fightMenu.SetActive(false);
+            _partyMenu.SetActive(false);
+            _itemsMenu.SetActive(false);
+            _mainMenu.SetActive(true);
             _canvas.SetActive(false);
         }
 
         public void SelectFight()
         {
             State.CurrentMenu = SubMenu.Fight;
-            // TODO: Open move select UI
+            _fightMenu.SetActive(true);
+            _mainMenu.SetActive(false);
         }
 
         public void SelectParty()
         {
             State.CurrentMenu = SubMenu.Party;
-            // TODO: Open party select UI
+            _partyMenu.SetActive(true);
+            _mainMenu.SetActive(false);
         }
 
         public void SelectItems()
         {
             State.CurrentMenu = SubMenu.Items;
-            // TODO: Open item select UI
+            _itemsMenu.SetActive(true);
+            _mainMenu.SetActive(false);
         }
 
         public void SelectBack()
         {
             State.CurrentMenu = null;
-            // TODO: Close all menus
+            _fightMenu.SetActive(false);
+            _partyMenu.SetActive(false);
+            _itemsMenu.SetActive(false);
+            _mainMenu.SetActive(true);
         }
 
         public void SelectRun()

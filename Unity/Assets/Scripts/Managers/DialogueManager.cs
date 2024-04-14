@@ -26,6 +26,7 @@ namespace LD55.Managers
 
         public void Show(DialogueModel model)
         {
+            Instance.IsTalking = true;
             Model = model;
             _nameText.text = model.Name;
             _textText.text = model.Text;

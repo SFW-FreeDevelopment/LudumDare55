@@ -8,11 +8,13 @@ namespace LD55.World
 {
     public class SummoningCircle : TriggerTileBase
     {
+        private static Monster[] Monsters;
+        
         protected override void Action()
         {
-            var monsters = Resources.LoadAll<Monster>("Monsters");
-            var idx = Random.Range(0, monsters.Length);
-            var monster = monsters[idx];
+            Monsters ??= Resources.LoadAll<Monster>("Monsters");
+            var idx = Random.Range(0, Monsters.Length);
+            var monster = Monsters[idx];
             DialogueManager.Instance.Show(new DialogueModel
             {
                 Name = monster.Name,
