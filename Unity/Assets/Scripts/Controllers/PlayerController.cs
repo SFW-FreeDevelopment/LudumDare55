@@ -12,6 +12,8 @@ namespace LD55.Controllers
         public LayerMask whatStopsMovement;
         public LayerMask encounterZone;
 
+        public SpriteRenderer SpriteRenderer;
+
         void Start()
         {
             // Remove movePoint from parent so that movePoint position is not relative to the player
@@ -22,6 +24,15 @@ namespace LD55.Controllers
         {
             if (BattleManager.Instance?.IsBattling ?? false) return;
             if (DialogueManager.Instance?.IsTalking ?? false) return;
+
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                SpriteRenderer.flipX = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                SpriteRenderer.flipX = false;
+            }
             
             transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
 

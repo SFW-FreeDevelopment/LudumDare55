@@ -45,9 +45,27 @@ namespace LD55.Managers
         {
             if (!IsBattling || !State.WaitingForPlayerInput) return;
 
-            if (State.CurrentMenu == SubMenu.Fight)
+            if (State.CurrentMenu == null)
             {
-
+                if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+                {
+                    SelectFight();
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+                {
+                    SelectParty();
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
+                {
+                    SelectItems();
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
+                {
+                    SelectRun();
+                }
+            }
+            else if (State.CurrentMenu == SubMenu.Fight)
+            {
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     SelectBack();
@@ -85,7 +103,7 @@ namespace LD55.Managers
             };
             
             SetupEnemyUI(State.Enemy.Party.Monsters[0]);
-            SetupPlayerUI(State.Enemy.Party.Monsters[1]);
+            SetupPlayerUI(State.Enemy.Party.Monsters[0]);
             
             _canvas.SetActive(true);
             CurrentBattleRoutine = StartCoroutine(Routine());
@@ -144,6 +162,7 @@ namespace LD55.Managers
 
         public void SelectRun()
         {
+            State.CurrentMenu = null;
             Hide();
         }
     }

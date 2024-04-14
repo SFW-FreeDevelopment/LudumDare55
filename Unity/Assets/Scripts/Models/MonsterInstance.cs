@@ -9,13 +9,17 @@ namespace LD55.Models
     public class MonsterInstance
     {
         [SerializeField] private Monster _monster;
-        [JsonIgnore] public Monster Monster => _monster;
+        [JsonIgnore] public Monster Monster
+        {
+            get => _monster;
+            set => _monster = value;
+        }
 
         public string Id => Monster.Id.ToString();
-        public byte Level { get; set; } = 1;
-        public int Experience { get; set; } = 10;
-        public int MaxHealth { get; set; } = 10;
-        public int CurrentHealth { get; set; } = 10;
+        public byte Level = 1;
+        public int Experience = 10;
+        public int MaxHealth = 10;
+        public int CurrentHealth = 10;
         public bool IsKO => CurrentHealth == 0;
 
         public void TakeDamage(int damage)

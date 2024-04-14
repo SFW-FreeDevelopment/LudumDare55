@@ -284,6 +284,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: monster-spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1e8182a8496fea4694ea616e306e62e
+      internalID: 1174018123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monster-spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 936890ac7bf7c404da19943a14dba2b2
+      internalID: -341699430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -296,6 +338,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       monster-spritesheet_4: 104630498
+      monster-spritesheet_9: -341699430
       monster-spritesheet_2: 1450990651
       monster-spritesheet_1: -1374309136
       monster-spritesheet_7: 1496406680
@@ -303,6 +346,7 @@ TextureImporter:
       monster-spritesheet_6: -2133310183
       monster-spritesheet_5: -1845859822
       monster-spritesheet_3: -1758477368
+      monster-spritesheet_8: 1174018123
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

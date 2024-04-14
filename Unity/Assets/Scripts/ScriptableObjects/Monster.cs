@@ -35,5 +35,11 @@ namespace LD55.ScriptableObjects
 
         [SerializeField] private LearnableMove[] _learnableMoves = Array.Empty<LearnableMove>();
         public LearnableMove[] LearnableMoves => _learnableMoves;
+
+        [SerializeField] private string _preBattleDialogue;
+        public string PreBattleDialogue => _preBattleDialogue;
+        
+        [SerializeField] private string _postBattleDialogue;
+        public string PostBattleDialogue => _postBattleDialogue;
     }
 }

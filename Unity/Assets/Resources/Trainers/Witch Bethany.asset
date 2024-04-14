@@ -20,4 +20,12 @@ MonoBehaviour:
   _party:
     _monsters:
     - _monster: {fileID: 11400000, guid: 9ac2fa1913943864e9cdbfa727c7cce2, type: 2}
+      Level: 3
+      Experience: 10
+      MaxHealth: 10
+      CurrentHealth: 10
     - _monster: {fileID: 11400000, guid: b214072c2778316489c23aab3ad8e403, type: 2}
+      Level: 2
+      Experience: 10
+      MaxHealth: 10
+      CurrentHealth: 10

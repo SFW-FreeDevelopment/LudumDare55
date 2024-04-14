@@ -23,3 +23,7 @@ MonoBehaviour:
   _learnableMoves:
   - _move: {fileID: 11400000, guid: 527ccd8cce273a448a804660cadd4c44, type: 2}
     _level: 1
+  - _move: {fileID: 11400000, guid: 527ccd8cce273a448a804660cadd4c44, type: 2}
+    _level: 1
+  _preBattleDialogue: Hissssss...
+  _postBattleDialogue: Hissssss...
