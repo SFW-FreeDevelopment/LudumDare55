@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shadow Pierce
   m_EditorClassIdentifier: 
   _name: Shadow Pierce
-  _description: 
+  _description: Decreases opponent Defense.
   _category: 1
   _moveType: 0
   _damage: 0

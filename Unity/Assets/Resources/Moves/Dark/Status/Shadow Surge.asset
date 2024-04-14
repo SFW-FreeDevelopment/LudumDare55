@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Shadow Surge
   _description: Attack power increases.
-  _category: 0
+  _category: 1
   _moveType: 0
   _damage: 0
   _accuracy: 100
