@@ -12,23 +12,39 @@ namespace LD55
         public bool HitSuccess { get; set; }
         public decimal Damage { get; set; }
         public string Effectiveness { get; set; }
+        public string Message { get; set; }
         public BattleMove moveUsed { get; set; }
+    }
+
+    public class CaptureResult
+    {
+        public bool CaptureSuccess { get; set; }
+        public int Roll { get; set; }
+        public int CaptureCheck { get; set; }
+        public string ShardOrStone { get; set; }
+        public string Message { get; set; }
     }
 
     public interface IBattleEngine
     {
-        bool TryCapture(MonsterInstance monsterInstance, string shardOrStone);
+        CaptureResult TryCapture(MonsterInstance monsterInstance, string shardOrStone);
         HitResult TryAttack(MonsterInstance playerInstance, MonsterInstance monsterInstance, BattleMove battleMove);
 
     }
 
     public class BattleEngine : IBattleEngine
     {
-        public bool TryCapture(MonsterInstance monsterInstance, string shardOrStone)
+        public CaptureResult TryCapture(MonsterInstance monsterInstance, string shardOrStone)
         {
-            return DoesCapture(monsterInstance, shardOrStone);
-        }
+            CaptureResult result = DoesCapture(monsterInstance, shardOrStone);
+            
+            if (result.CaptureSuccess == true)
+            {
+                //Do Capture;
+            }
 
+            return result;
+        }
 
         /// <summary>
         /// Determine if the demon is captured
@@ -37,8 +53,10 @@ namespace LD55
         /// <param name="monsterInstance"></param>
         /// <param name="shardModifer"></param>
         /// <returns></returns>
-        private bool DoesCapture(MonsterInstance monsterInstance, string shardOrStone)
+        private CaptureResult DoesCapture(MonsterInstance monsterInstance, string shardOrStone)
         {
+            CaptureResult captureResult = new CaptureResult();
+            captureResult.ShardOrStone = shardOrStone;
             const decimal shard = 1.1m;
             const decimal stone = .9m;
             const int shardMaxN = 75;
@@ -58,6 +76,7 @@ namespace LD55
 
             System.Random rand = new System.Random();
             var n = rand.Next(1, maxN);
+            captureResult.Roll = n;
 
             var captureDifficulty = captureRate * hpModifier * itemModifier;
 
@@ -65,14 +84,19 @@ namespace LD55
             {
                 captureDifficulty += monsterLevel;
             }
+            captureResult.CaptureCheck = (int)captureDifficulty;
 
             if (n > captureDifficulty)
             {
-                return true;
+                captureResult.CaptureSuccess = true;
+                return captureResult;
             }
 
-            return false;
+            captureResult.CaptureSuccess = false;
+            return captureResult;
         }
+
+
 
         /// <summary>
         /// Generate random number between 1 and 100. If random number is less than the move accuracy, the move hits (true). Else the move missed (false).
@@ -197,6 +221,8 @@ namespace LD55
             }
             return true;
         }
+
+
 
     }
     
