@@ -3,6 +3,7 @@
     public enum BattleMoveCategory
     {
         Attack,
-        Status
+        Status,
+        Restore
     }
 }

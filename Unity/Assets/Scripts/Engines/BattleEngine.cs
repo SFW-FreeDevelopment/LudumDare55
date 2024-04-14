@@ -2,10 +2,18 @@ using LD55.Models;
 using LD55.ScriptableObjects;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace LD55
 {
+    public interface IBattleEngine
+    {
+        HitResult TryAttack(MonsterInstance attackerInstance, MonsterInstance defenderIntance, BattleMove battleMove);
+        ItemResult UseItem(MonsterInstance attackerInstance, MonsterInstance defenderIntance, string item);
+        FleeResult TryFlee(MonsterInstance attackerInstance, MonsterInstance defenderIntance);
+
+    }
 
     public class HitResult
     {
@@ -25,19 +33,122 @@ namespace LD55
         public string Message { get; set; }
     }
 
-    public interface IBattleEngine
+    public class ItemResult
     {
-        CaptureResult TryCapture(MonsterInstance monsterInstance, string shardOrStone);
-        HitResult TryAttack(MonsterInstance playerInstance, MonsterInstance monsterInstance, BattleMove battleMove);
-
+        public bool ItemSuccess { get; set; }
+        public CaptureResult CaptureResult { get; set; }
+        public HitResult HitResult { get; set; }
     }
+
+    public class FleeResult
+    {
+        public bool FleeSuccess { get; set; }
+        public string FleeMessage { get; set; }
+    }
+
 
     public class BattleEngine : IBattleEngine
     {
-        public CaptureResult TryCapture(MonsterInstance monsterInstance, string shardOrStone)
+        public FleeResult TryFlee(MonsterInstance attackerInstance, MonsterInstance defenderInstance)
+        {
+            FleeResult result = new FleeResult();
+            var fleeSuccess = CheckFleeSuccess(attackerInstance, defenderInstance);
+            
+            if (fleeSuccess)
+            {
+                result.FleeSuccess = true;
+            }
+            else
+            {
+                result.FleeSuccess = false;
+            }
+
+            return result;
+        }
+
+
+        /// <summary>
+        /// Checks if flee succedded.
+        /// </summary>
+        /// <param name="attackerInstance"></param>
+        /// <param name="defenderInstance"></param>
+        /// <returns></returns>
+        private bool CheckFleeSuccess(MonsterInstance playerInstance, MonsterInstance monsterInstance)
+        {
+            System.Random rand = new System.Random();
+            var randomVar = rand.Next(1, 15);//playerInstance.Speed);
+            var levelRatio = (playerInstance.Level / monsterInstance.Level);
+            var roll = 20;//levelRatio * randomVar + playerInstance.speed;
+            var baseCheckToBeat = 15;//monsterInstance.speed + rand.Next(1,monsterInstance.Speed)
+            var checkToBeat = baseCheckToBeat * (monsterInstance.CurrentHealth / monsterInstance.MaxHealth);
+
+            if (roll > checkToBeat)
+            {
+                return true;
+            }
+            
+            return false;
+        }
+
+        public ItemResult UseItem(MonsterInstance playerInstance, MonsterInstance monsterInstance, string item)
+        {
+            ItemResult result = new ItemResult();
+
+            switch (item)
+            {
+                case "shard":
+                case "stone":
+                    result.CaptureResult = TryCapture(monsterInstance, item);
+
+                    if (result.CaptureResult.CaptureSuccess == true)
+                    {
+                        result.ItemSuccess = true;
+                    }
+                    else
+                    {
+                        result.ItemSuccess = false;
+                    }
+                    break;
+
+                case "hexBag":
+                    BattleMove move = new BattleMove();
+                    var hexBag = move.CreateBattleMoveFromItem("name", "description", Enums.BattleMoveCategory.Attack, Enums.MonsterType.Fire, 10, 1);
+                    result.HitResult = TryAttack(playerInstance, monsterInstance, hexBag);
+
+                    if (result.HitResult.HitSuccess == true)
+                    {
+                        result.ItemSuccess = true;
+                    }
+                    else
+                    {
+                        result.ItemSuccess = false;
+                    }
+                    break;
+                case "potion":
+                    result.HitResult = TryHeal(playerInstance, item);
+                    result.ItemSuccess = true;
+                    break;
+            }
+
+            ConsumeItem();
+
+            return result;
+        }
+
+        private HitResult TryHeal(MonsterInstance attackerInstance, string item)
+        {
+            attackerInstance.Heal(10);//item.Damage);
+            var hitResult = new HitResult();
+                hitResult.HitSuccess = true;
+                hitResult.Damage = 10;//item.Damage;
+                hitResult.Message = $"{attackerInstance} used {item} to restore {hitResult.Damage} health";
+                
+                return hitResult;
+        }
+
+        private CaptureResult TryCapture(MonsterInstance monsterInstance, string shardOrStone)
         {
             CaptureResult result = DoesCapture(monsterInstance, shardOrStone);
-            
             if (result.CaptureSuccess == true)
             {
                 //Do Capture;
@@ -229,7 +340,7 @@ namespace LD55
         }
 
 
-        private string GenerateMessage(BattleMove battleMove, HitResult hitResult, MonsterInstance attackerInstance, MonsterInstance defenderInstance)
+        private string GenerateMessage(BattleMove battleMove, HitResult hitResult, MonsterInstance attackerInstance, MonsterInstance defenderInstance = null)
         {
             string result = string.Empty;
             if(hitResult.HitSuccess == false)
@@ -247,10 +358,23 @@ namespace LD55
                 result = $"{attackerInstance.Id} used {battleMove.name} on {defenderInstance.Id}. {defenderInstance} took {hitResult.Damage}";
             }
 
+            if (battleMove.Category == Enums.BattleMoveCategory.Restore && hitResult.HitSuccess == true)
+            {
+                result = $"{attackerInstance.Id} healed for {hitResult.Damage}";
+            }
+
             return result;
         }
 
-
+        /// <summary>
+        /// Player consumed an item. Remove it from their inventory.
+        /// </summary>
+        /// <returns></returns>
+        private bool ConsumeItem()//(MonsterInstance playerInstance, string item)
+        {
+            //consume Item
+            return true;
+        }
 
     }
     
