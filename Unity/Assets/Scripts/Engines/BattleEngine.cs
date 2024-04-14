@@ -89,10 +89,12 @@ namespace LD55
             if (n > captureDifficulty)
             {
                 captureResult.CaptureSuccess = true;
+                captureResult.Message = $"{monsterInstance.Id} was captured";
                 return captureResult;
             }
 
             captureResult.CaptureSuccess = false;
+            captureResult.Message = $"{monsterInstance.Id} resisted capture!";
             return captureResult;
         }
 
@@ -154,6 +156,7 @@ namespace LD55
             {
                 hitResult.HitSuccess = false;
                 hitResult.Damage = 0;
+                hitResult.Message = GenerateMessage(battleMove, hitResult, attackerInstance, defenderInstance);
                 return hitResult;
             }
 
@@ -184,6 +187,7 @@ namespace LD55
                 defenderInstance.TakeDamage((int)damage);
                 hitResult.Damage = (int)damage;
                 hitResult.moveUsed = battleMove;
+                hitResult.Message = GenerateMessage(battleMove, hitResult, attackerInstance, defenderInstance);
                 return hitResult;
             }
             
@@ -192,6 +196,7 @@ namespace LD55
                 ProcessStatus(battleMove, attackerInstance, defenderInstance);
                 hitResult.Damage = battleMove.Damage;
                 hitResult.moveUsed = battleMove;
+                hitResult.Message = GenerateMessage(battleMove, hitResult, attackerInstance, defenderInstance);
                 return hitResult;
             }
 
@@ -199,6 +204,7 @@ namespace LD55
             hitResult.HitSuccess = false;
             hitResult.moveUsed = battleMove;
             hitResult.Damage = 0;
+            hitResult.Message = $"Something went wrong, your move missed. {battleMove.Name} was a terrible attack";
             return hitResult;
         }
 
@@ -220,6 +226,28 @@ namespace LD55
                     break;
             }
             return true;
+        }
+
+
+        private string GenerateMessage(BattleMove battleMove, HitResult hitResult, MonsterInstance attackerInstance, MonsterInstance defenderInstance)
+        {
+            string result = string.Empty;
+            if(hitResult.HitSuccess == false)
+            {
+                result = $"{attackerInstance.Id} used {battleMove.name}... it missed! ";
+            }
+            
+            if (battleMove.Category == Enums.BattleMoveCategory.Attack && hitResult.HitSuccess == true)
+            {
+                result = $"{attackerInstance.Id} used {battleMove.name} on {defenderInstance.Id}. It was {hitResult.Effectiveness}. {defenderInstance} took {hitResult.Damage}";
+            }
+
+            if (battleMove.Category == Enums.BattleMoveCategory.Status && hitResult.HitSuccess == true)
+            {
+                result = $"{attackerInstance.Id} used {battleMove.name} on {defenderInstance.Id}. {defenderInstance} took {hitResult.Damage}";
+            }
+
+            return result;
         }
 
 
