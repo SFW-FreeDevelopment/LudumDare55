@@ -2,8 +2,16 @@
 {
     public enum SoundName
     {
-        Click,
-        Startup,
-        Close
+        Attack,
+        Click1,
+        Click2,
+        Growl,
+        Growl2,
+        Growl3,
+        LightFire,
+        Scratch,
+        Scratch2,
+        Thud,
+        Thud2
     }
 }
