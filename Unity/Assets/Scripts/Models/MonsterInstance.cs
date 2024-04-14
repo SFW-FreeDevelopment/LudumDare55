@@ -1,11 +1,17 @@
 ﻿using System;
+using LD55.ScriptableObjects;
+using Newtonsoft.Json;
+using UnityEngine;
 
 namespace LD55.Models
 {
     [Serializable]
     public class MonsterInstance
     {
-        public string Id { get; set; }
+        [SerializeField] private Monster _monster;
+        [JsonIgnore] public Monster Monster => _monster;
+
+        public string Id => Monster.Id.ToString();
         public byte Level { get; set; }
         public int Experience { get; set; }
         public int MaxHealth { get; set; }

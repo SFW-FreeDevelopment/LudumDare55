@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9eff611b3494a3aa2057fe32a451724, type: 3}
+  m_Name: Witch Bethany
+  m_EditorClassIdentifier: 
+  _name: Witch Bethany
+  _sprite: {fileID: -1732179036, guid: 1606c55df74571d4f9c35ceb782334e2, type: 3}
+  _image: {fileID: 21300000, guid: 72ee4b2a17d255f41a054fd1a2d8f957, type: 3}
+  _preBattleDialogue: Darkness will consume you!
+  _postBattleDialogue: The darkness consumed me...
+  _party:
+    _monsters:
+    - _monster: {fileID: 11400000, guid: a1da3d432f91fc24b87930743fd4f36a, type: 2}
+    - _monster: {fileID: 11400000, guid: a1da3d432f91fc24b87930743fd4f36a, type: 2}
