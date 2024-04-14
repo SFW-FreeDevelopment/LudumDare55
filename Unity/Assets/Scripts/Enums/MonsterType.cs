@@ -5,6 +5,7 @@
         Dark,
         Fire,
         Rock,
-        Poison
+        Poison,
+        Fel
     }
 }
