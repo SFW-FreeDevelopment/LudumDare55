@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07e0f5b2e8074e56b423020f4eed7f84, type: 3}
-  m_Name: Fire Whip
+  m_Name: Acid Pierce
   m_EditorClassIdentifier: 
-  _name: Fire Whip
-  _description: Use fire to lower opponents defense.
+  _name: Acid Pierce
+  _description: Decreases opponent Defense.
   _category: 1
-  _moveType: 1
+  _moveType: 3
   _damage: 0
-  _accuracy: 85
+  _accuracy: 100
