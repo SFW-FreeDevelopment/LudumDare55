@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07e0f5b2e8074e56b423020f4eed7f84, type: 3}
-  m_Name: Darkness Beam
+  m_Name: Fel Veil
   m_EditorClassIdentifier: 
-  _name: 
-  _description: 
-  _category: 0
-  _moveType: 0
+  _name: Fel Veil
+  _description: Traps opponent in magic fire, inflicting damage each turn.
+  _category: 1
+  _moveType: 1
   _damage: 0
   _accuracy: 100
