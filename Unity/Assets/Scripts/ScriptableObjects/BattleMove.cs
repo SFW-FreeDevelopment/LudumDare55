@@ -23,5 +23,23 @@ namespace LD55.ScriptableObjects
         
         [SerializeField] private byte _accuracy = 100;
         public byte Accuracy => _accuracy;
+
+        public void Init(string name, string description, BattleMoveCategory category, MonsterType moveType, byte damage, byte accuracy)
+        {
+            this.name = name;
+            this._description = description;
+            this._category = category;
+            this._moveType = moveType;
+            this._damage = damage;
+            this._accuracy = accuracy;
+        }
+
+        public BattleMove CreateBattleMoveFromItem(string name, string description, BattleMoveCategory category, MonsterType moveType, byte damage, byte accuracy)
+        {
+            var data = ScriptableObject.CreateInstance<BattleMove>();
+            data.Init(name, description, category, moveType, damage, accuracy);
+            return data;
+        }
     }
+
 }
