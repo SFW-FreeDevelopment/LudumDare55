@@ -10,5 +10,6 @@ namespace LD55.Models
         public string Text { get; set; }
         public Sprite Sprite { get; set; }
         public Action Action { get; set; }
+        public bool IsTrainer { get; set; }
     }
 }

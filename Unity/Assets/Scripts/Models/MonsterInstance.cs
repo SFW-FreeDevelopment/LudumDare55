@@ -12,10 +12,10 @@ namespace LD55.Models
         [JsonIgnore] public Monster Monster => _monster;
 
         public string Id => Monster.Id.ToString();
-        public byte Level { get; set; }
-        public int Experience { get; set; }
-        public int MaxHealth { get; set; }
-        public int CurrentHealth { get; set; }
+        public byte Level { get; set; } = 1;
+        public int Experience { get; set; } = 10;
+        public int MaxHealth { get; set; } = 10;
+        public int CurrentHealth { get; set; } = 10;
         public bool IsKO => CurrentHealth == 0;
 
         public void TakeDamage(int damage)

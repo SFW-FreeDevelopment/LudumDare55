@@ -12,6 +12,7 @@ namespace LD55.Managers
         [SerializeField] private TextMeshProUGUI _nameText;
         [SerializeField] private TextMeshProUGUI _textText;
         [SerializeField] private Image _image;
+        [SerializeField] private Image _bigImage;
         [SerializeField] private Button _continueButton;
         
         private DialogueModel Model { get; set; }
@@ -26,6 +27,18 @@ namespace LD55.Managers
             Model = model;
             _nameText.text = model.Name;
             _textText.text = model.Text;
+            if (model.IsTrainer)
+            {
+                _bigImage.sprite = model.Sprite;
+                _bigImage.gameObject.SetActive(true);
+                _image.gameObject.SetActive(false);
+            }
+            else
+            {
+                _image.sprite = model.Sprite;
+                _image.gameObject.SetActive(true);
+                _bigImage.gameObject.SetActive(false);
+            }
             _image.sprite = model.Sprite;
             _dialogueWindow.SetActive(true);
         }

@@ -1,3 +1,4 @@
+using LD55.Managers;
 using UnityEngine;
 
 namespace LD55.Controllers
@@ -19,6 +20,8 @@ namespace LD55.Controllers
 
         void Update()
         {
+            if (BattleManager.Instance?.IsBattling ?? false) return;
+            
             transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
 
             if (Vector3.Distance(transform.position, movePoint.position) <= .05f)

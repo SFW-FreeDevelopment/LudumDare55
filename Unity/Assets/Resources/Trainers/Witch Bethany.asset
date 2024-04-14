@@ -19,5 +19,5 @@ MonoBehaviour:
   _postBattleDialogue: The darkness consumed me...
   _party:
     _monsters:
-    - _monster: {fileID: 11400000, guid: a1da3d432f91fc24b87930743fd4f36a, type: 2}
-    - _monster: {fileID: 11400000, guid: a1da3d432f91fc24b87930743fd4f36a, type: 2}
+    - _monster: {fileID: 11400000, guid: 9ac2fa1913943864e9cdbfa727c7cce2, type: 2}
+    - _monster: {fileID: 11400000, guid: b214072c2778316489c23aab3ad8e403, type: 2}

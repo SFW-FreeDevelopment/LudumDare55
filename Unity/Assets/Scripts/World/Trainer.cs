@@ -29,8 +29,9 @@ namespace LD55.World
                     Name = Data.Name,
                     Text = Data.PostBattleDialogue,
                     Sprite = Data.Image,
+                    IsTrainer = true,
                     Action = () => {
-                        // TODO: Do something
+                        // Do nothing since we fought them before
                     }
                 });
             }
@@ -41,8 +42,13 @@ namespace LD55.World
                     Name = Data.Name,
                     Text = Data.PreBattleDialogue,
                     Sprite = Data.Image,
+                    IsTrainer = true,
                     Action = () => {
-                        // TODO: Do something
+                        BattleManager.Instance.Show(new BattleEnemyModel
+                        {
+                            Name = Data.Name,
+                            Party = Data.Party
+                        });
                     }
                 });
             }
