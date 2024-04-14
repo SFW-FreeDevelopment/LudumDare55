@@ -17,7 +17,7 @@ namespace LD55
     public interface IBattleEngine
     {
         bool TryCapture(MonsterInstance monsterInstance, string shardOrStone);
-        HitResult TryAttack(MonsterInstance playerInstance, MonsterInstance monsterInstance, BattleMove battleMove)
+        HitResult TryAttack(MonsterInstance playerInstance, MonsterInstance monsterInstance, BattleMove battleMove);
     }
 
     public class BattleEngine : IBattleEngine
