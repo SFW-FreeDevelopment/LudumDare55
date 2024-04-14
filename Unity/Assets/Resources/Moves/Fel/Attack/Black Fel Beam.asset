@@ -15,6 +15,6 @@ MonoBehaviour:
   _name: Black Fel Beam
   _description: All-powerful beam of concentrated black flames!
   _category: 0
-  _moveType: 0
+  _moveType: 4
   _damage: 125
   _accuracy: 65

@@ -15,6 +15,6 @@ MonoBehaviour:
   _name: Fel Tomb
   _description: Drops the magic on enemies.
   _category: 0
-  _moveType: 0
+  _moveType: 4
   _damage: 70
   _accuracy: 90

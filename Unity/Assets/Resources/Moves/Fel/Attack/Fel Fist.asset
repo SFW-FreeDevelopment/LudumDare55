@@ -15,6 +15,6 @@ MonoBehaviour:
   _name: Fel Fist
   _description: Unleash lethal attack using magic.
   _category: 0
-  _moveType: 0
+  _moveType: 4
   _damage: 55
   _accuracy: 95

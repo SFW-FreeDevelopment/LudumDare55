@@ -15,6 +15,6 @@ MonoBehaviour:
   _name: Fel Blast
   _description: Unleashes a blast of dark fire!
   _category: 0
-  _moveType: 0
+  _moveType: 4
   _damage: 95
   _accuracy: 85
