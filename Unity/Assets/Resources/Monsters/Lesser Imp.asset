@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921ad77e4c4ebf6408384a6050404b94, type: 3}
   m_Name: Lesser Imp
   m_EditorClassIdentifier: 
-  _id: 1
+  _id: 4
   _name: Lesser Imp
   _description: A small, cackling demon
   _sprite: {fileID: -1758477368, guid: cfd7459c9d8486349b620c1dc2f0e36d, type: 3}
@@ -25,3 +25,5 @@ MonoBehaviour:
     _level: 1
   - _move: {fileID: 11400000, guid: b2ac3885ec3723c4f8f2a9de00f855e9, type: 2}
     _level: 1
+  _preBattleDialogue: 
+  _postBattleDialogue: 
