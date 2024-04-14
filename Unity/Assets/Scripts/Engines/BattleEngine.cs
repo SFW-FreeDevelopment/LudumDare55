@@ -57,10 +57,12 @@ namespace LD55
             if (fleeSuccess)
             {
                 result.FleeSuccess = true;
+                result.FleeMessage = $"{attackerInstance} has successfully fled";
             }
             else
             {
                 result.FleeSuccess = false;
+                result.FleeMessage = $"{attackerInstance} failed to flee";
             }
 
             return result;
