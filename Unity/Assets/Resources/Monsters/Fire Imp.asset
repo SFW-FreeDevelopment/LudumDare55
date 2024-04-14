@@ -15,11 +15,13 @@ MonoBehaviour:
   _id: 7
   _name: Fire Imp
   _description: 
-  _sprite: {fileID: 0}
-  _image: {fileID: 0}
+  _sprite: {fileID: 104630498, guid: cfd7459c9d8486349b620c1dc2f0e36d, type: 3}
+  _image: {fileID: 21300000, guid: 566fbc7f02797d84493572dafa79c335, type: 3}
   _type: 1
   _baseExperience: 0
   _catchRate: 0
-  _learnableMoves: []
-  _preBattleDialogue: 
-  _postBattleDialogue: 
+  _learnableMoves:
+  - _move: {fileID: 11400000, guid: 527ccd8cce273a448a804660cadd4c44, type: 2}
+    _level: 1
+  _preBattleDialogue: ...
+  _postBattleDialogue: ...

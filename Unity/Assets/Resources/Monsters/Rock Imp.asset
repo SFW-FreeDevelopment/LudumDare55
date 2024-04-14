@@ -15,11 +15,13 @@ MonoBehaviour:
   _id: 6
   _name: Rock Imp
   _description: 
-  _sprite: {fileID: 0}
-  _image: {fileID: 0}
+  _sprite: {fileID: -1845859822, guid: cfd7459c9d8486349b620c1dc2f0e36d, type: 3}
+  _image: {fileID: 21300000, guid: eb943305f9b555b41abcb51044e0bee8, type: 3}
   _type: 2
   _baseExperience: 0
   _catchRate: 0
-  _learnableMoves: []
-  _preBattleDialogue: 
-  _postBattleDialogue: 
+  _learnableMoves:
+  - _move: {fileID: 11400000, guid: 527ccd8cce273a448a804660cadd4c44, type: 2}
+    _level: 1
+  _preBattleDialogue: ...
+  _postBattleDialogue: ...

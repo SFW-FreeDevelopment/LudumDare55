@@ -43,7 +43,7 @@ namespace LD55.Managers
             {
                 yield return null;
                 
-                if (!IsBattling || !State.WaitingForPlayerInput) continue;
+                if (!IsBattling || !State.WaitingForPlayerInput || State.InputLocked) continue;
 
                 if (State.CurrentMenu == null)
                 {
@@ -132,10 +132,12 @@ namespace LD55.Managers
             
             _hitResultText.text = hitResult.Message;
             _hitResultPane.gameObject.SetActive(true);
+            State.InputLocked = true;
             StartCoroutine(CoroutineTemplate.DelayAndFireRoutine(2.5f, () => {
                 _hitResultPane.gameObject.SetActive(false);
                 _mainMenu.SetActive(true);
                 State.CurrentMenu = null;
+                State.InputLocked = false;
             }));
         }
         

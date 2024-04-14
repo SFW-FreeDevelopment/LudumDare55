@@ -6,6 +6,7 @@ namespace LD55.Models
     [Serializable]
     public class BattleState
     {
+        public bool InputLocked { get; set; }
         public SubMenu? CurrentMenu { get; set; }
         public bool WaitingForPlayerInput { get; set; } = true;
         public BattleEnemyModel Enemy { get; set; }
