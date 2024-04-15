@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
+using LD55.Enums;
 using LD55.Models;
 using LD55.ScriptableObjects;
 using TMPro;
@@ -72,33 +74,48 @@ namespace LD55.Managers
                     }
                     else if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
                     {
-                        var result = BattleEngine.TryAttack(State.CurrentMonster, State.Enemy.CurrentMonster, State.CurrentMonster.Monster.LearnableMoves[0].Move);
-                        RefreshUI();
-                        DisplayHitResult(result);
-                        CheckForBattleEnd();
+                        ProcessPlayerMove(State.CurrentMonster.Monster.LearnableMoves[0].Move);
                     }
                     else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
                     {
-                        var result = BattleEngine.TryAttack(State.CurrentMonster, State.Enemy.CurrentMonster, State.CurrentMonster.Monster.LearnableMoves[1].Move);
-                        RefreshUI();
-                        DisplayHitResult(result);
-                        CheckForBattleEnd();
+                        ProcessPlayerMove(State.CurrentMonster.Monster.LearnableMoves[1].Move);
                     }
                     else if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
                     {
-                        var result = BattleEngine.TryAttack(State.CurrentMonster, State.Enemy.CurrentMonster, State.CurrentMonster.Monster.LearnableMoves[2].Move);
-                        RefreshUI();
-                        DisplayHitResult(result);
-                        CheckForBattleEnd();
+                        ProcessPlayerMove(State.CurrentMonster.Monster.LearnableMoves[2].Move);
                     }
                     else if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
                     {
-                        var result = BattleEngine.TryAttack(State.CurrentMonster, State.Enemy.CurrentMonster, State.CurrentMonster.Monster.LearnableMoves[3].Move);
-                        RefreshUI();
-                        DisplayHitResult(result);
-                        CheckForBattleEnd();
+                        ProcessPlayerMove(State.CurrentMonster.Monster.LearnableMoves[3].Move);
                     }
                 }
+            }
+        }
+
+        private void ProcessPlayerMove(BattleMove move)
+        {
+            PlayAttackSound(move.Category);
+            var result = BattleEngine.TryAttack(State.CurrentMonster, State.Enemy.CurrentMonster, move);
+            RefreshUI();
+            DisplayHitResult(result);
+            CheckForBattleEnd();
+        }
+
+        private void PlayAttackSound(BattleMoveCategory category)
+        {
+            switch (category)
+            {
+                case BattleMoveCategory.Attack:
+                    AudioManager.Instance.Play(SoundName.Attack);
+                    break;
+                case BattleMoveCategory.Status:
+                    AudioManager.Instance.Play(SoundName.Growl);
+                    break;
+                case BattleMoveCategory.Restore:
+                    AudioManager.Instance.Play(SoundName.Growl2);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(category), category, null);
             }
         }
 

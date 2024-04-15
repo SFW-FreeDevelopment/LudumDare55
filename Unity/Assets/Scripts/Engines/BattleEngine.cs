@@ -386,28 +386,28 @@ namespace LD55
             string result = string.Empty;
             if(hitResult.HitSuccess == false)
             {
-                result = $"{attackerInstance.Id} used {battleMove.name}... it missed! ";
+                result = $"{attackerInstance.Monster.Name} used {battleMove.Name}... it missed! ";
             }
             
             if (battleMove.Category == Enums.BattleMoveCategory.Attack && hitResult.HitSuccess == true)
             {
-                result = $"{attackerInstance.Id} used {battleMove.name} on {defenderInstance.Id}.";
+                result = $"{attackerInstance.Monster.Name} used {battleMove.Name} on {defenderInstance.Monster.Name}.";
                 if (hitResult.Effectiveness != Effectiveness.Normal)
                 {
-                    result += $" It was {hitResult.Effectiveness.ToString()}.";
+                    result += $"{Environment.NewLine}It was {hitResult.Effectiveness.ToString()}.";
                 }
                         
-                result += $"{defenderInstance} took {hitResult.Damage}";
+                result += $"{Environment.NewLine}It took {hitResult.Damage} damage!";
             }
 
             if (battleMove.Category == Enums.BattleMoveCategory.Status && hitResult.HitSuccess == true)
             {
-                result = $"{attackerInstance.Id} used {battleMove.name} on {defenderInstance.Id}. {defenderInstance} took {hitResult.Damage}";
+                result = $"{attackerInstance.Monster.Name} used {battleMove.Name} on {defenderInstance.Monster.Name}.{Environment.NewLine}It took {hitResult.Damage} damage!";
             }
 
             if (battleMove.Category == Enums.BattleMoveCategory.Restore && hitResult.HitSuccess == true)
             {
-                result = $"{attackerInstance.Id} healed for {hitResult.Damage}";
+                result = $"{attackerInstance.Monster.Name} healed for {hitResult.Damage}";
             }
 
             return result;
