@@ -7,6 +7,7 @@ using LD55.ScriptableObjects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 using Random=System.Random;
 
 namespace LD55.Managers
@@ -106,6 +107,29 @@ namespace LD55.Managers
                             ProcessPlayerMove(State.CurrentMonster.Monster.LearnableMoves[3].Move);
                         }
                     }
+                    else if (State.CurrentMenu == SubMenu.Items)
+                    {
+                        if (Input.GetKeyDown(KeyCode.Escape))
+                        {
+                            SelectBack();
+                        }
+                        else if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+                        {
+                            ProcessPlayerItem("potion");
+                        }
+                        else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+                        {
+                            ProcessPlayerItem("shard");
+                        }
+                        else if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
+                        {
+                            ProcessPlayerItem("stone");
+                        }
+                        else if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
+                        {
+                            ProcessPlayerItem("hexBag");
+                        }
+                    }
                 }
             }
         }
@@ -116,6 +140,20 @@ namespace LD55.Managers
             var result = BattleEngine.TryAttack(State.CurrentMonster, State.Enemy.CurrentMonster, move);
             RefreshUI();
             DisplayHitResult(result, false);
+        }
+
+        private void ProcessPlayerItem(string item)
+        {
+            var result = BattleEngine.UseItem(State.CurrentMonster, State.Enemy.CurrentMonster, item);
+
+            if (result.HitResult != null)
+            {
+                DisplayHitResult(result.HitResult, false);
+            }
+            else if (result.CaptureResult != null)
+            {
+                DisplayCaptureResult(result.CaptureResult, false);
+            }
         }
 
         private void ProcessEnemyMove(BattleMove move)
@@ -173,6 +211,28 @@ namespace LD55.Managers
             _itemsMenu.SetActive(false);
             
             _hitResultText.text = hitResult.Message;
+            _hitResultPane.gameObject.SetActive(true);
+            State.InputLocked = true;
+            State.AnimationInProgress = true;
+            StartCoroutine(CoroutineTemplate.DelayAndFireRoutine(2.0f, () => {
+                _hitResultPane.gameObject.SetActive(false);
+                _mainMenu.SetActive(true);
+                State.CurrentMenu = null;
+                State.InputLocked = false;
+                CheckForBattleEnd();
+                State.AnimationInProgress = false;
+                State.WaitingForPlayerInput = waitingForPlayerInput;
+            }));
+        }
+
+        private void DisplayCaptureResult(CaptureResult captureResult, bool waitingForPlayerInput)
+        {
+            _mainMenu.SetActive(false);
+            _fightMenu.SetActive(false);
+            _partyMenu.SetActive(false);
+            _itemsMenu.SetActive(false);
+
+            _hitResultText.text = captureResult.Message;
             _hitResultPane.gameObject.SetActive(true);
             State.InputLocked = true;
             State.AnimationInProgress = true;
@@ -292,6 +352,8 @@ namespace LD55.Managers
 
         public void SelectItems()
         {
+
+
             State.CurrentMenu = SubMenu.Items;
             _itemsMenu.SetActive(true);
             _mainMenu.SetActive(false);
