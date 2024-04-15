@@ -44,5 +44,29 @@ namespace LD55.ScriptableObjects
         
         [SerializeField] private string _postBattleDialogue;
         public string PostBattleDialogue => _postBattleDialogue;
+        
+        [SerializeField] private string _baseHp;
+        public string BaseHp => _baseHp;
+        
+        [SerializeField] private string _baseAtk;
+        public string BaseAtk => _baseAtk;
+        
+        [SerializeField] private string _baseDef;
+        public string BaseDef => _baseDef;
+        
+        [SerializeField] private string _baseSpd;
+        public string BaseSpd => _baseSpd;
+        
+        [SerializeField] private string _accrualHp;
+        public string AccrualHp => _accrualHp;
+        
+        [SerializeField] private string _accrualAtk;
+        public string AccrualAtk => _accrualAtk;
+        
+        [SerializeField] private string _accrualDef;
+        public string AccrualDef => _accrualDef;
+        
+        [SerializeField] private string _accrualSpd;
+        public string AccrualSpd => _accrualSpd;
     }
 }

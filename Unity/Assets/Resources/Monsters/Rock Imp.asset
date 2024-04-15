@@ -52,3 +52,11 @@ MonoBehaviour:
     _level: 50
   _preBattleDialogue: ... REEEEE ...
   _postBattleDialogue: ... REEEEE ...
+  _baseHp: 15
+  _baseAtk: 15
+  _baseDef: 15
+  _baseSpd: 15
+  _accrualHp: 1
+  _accrualAtk: 2
+  _accrualDef: 3
+  _accrualSpd: 2
