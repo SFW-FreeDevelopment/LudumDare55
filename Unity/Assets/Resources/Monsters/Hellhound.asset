@@ -56,3 +56,11 @@ MonoBehaviour:
     _level: 50
   _preBattleDialogue: ... Booofs ...
   _postBattleDialogue: ... Boof Hellaboofs...
+  _baseHp: 12
+  _baseAtk: 15
+  _baseDef: 15
+  _baseSpd: 18
+  _accrualHp: 1
+  _accrualAtk: 3
+  _accrualDef: 1
+  _accrualSpd: 3

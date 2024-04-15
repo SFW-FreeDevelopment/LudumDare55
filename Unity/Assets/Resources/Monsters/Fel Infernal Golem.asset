@@ -48,3 +48,11 @@ MonoBehaviour:
     _level: 50
   _preBattleDialogue: GRRAAAHHH!!!
   _postBattleDialogue: GRRAAAHHH!!!
+  _baseHp: 18
+  _baseAtk: 12
+  _baseDef: 18
+  _baseSpd: 12
+  _accrualHp: 3
+  _accrualAtk: 1
+  _accrualDef: 3
+  _accrualSpd: 1
