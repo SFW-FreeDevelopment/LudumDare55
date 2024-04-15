@@ -20,10 +20,39 @@ MonoBehaviour:
   _type: 3
   _baseExperience: 20
   _catchRate: 150
+  _speed: 100
   _learnableMoves:
   - _move: {fileID: 11400000, guid: 527ccd8cce273a448a804660cadd4c44, type: 2}
     _level: 1
-  - _move: {fileID: 11400000, guid: 527ccd8cce273a448a804660cadd4c44, type: 2}
+  - _move: {fileID: 11400000, guid: 78e0dff8a0046984aa78c82985570894, type: 2}
     _level: 1
+  - _move: {fileID: 11400000, guid: c517dcceec23bf04cbe8da4531d1790d, type: 2}
+    _level: 4
+  - _move: {fileID: 11400000, guid: 2b7ee8ce8349c8248b00d7e755b6e9d3, type: 2}
+    _level: 7
+  - _move: {fileID: 11400000, guid: 0e13aeffc2724f242b3f5bf23f569c88, type: 2}
+    _level: 11
+  - _move: {fileID: 11400000, guid: e01da92d2ccd09348ac62232829c9e4a, type: 2}
+    _level: 15
+  - _move: {fileID: 11400000, guid: 6089680ebd7a93e4ea08202867f07596, type: 2}
+    _level: 18
+  - _move: {fileID: 11400000, guid: ab62243cb86f2554bbb6999cf2812fc5, type: 2}
+    _level: 22
+  - _move: {fileID: 11400000, guid: 90eb6b42387f9a342a5ca189e30c3a71, type: 2}
+    _level: 26
+  - _move: {fileID: 11400000, guid: e63d5dc0b872d6a4cb096889f132ff53, type: 2}
+    _level: 31
+  - _move: {fileID: 11400000, guid: 16b907cc6d30d0a44bcb8a908ff24664, type: 2}
+    _level: 33
+  - _move: {fileID: 11400000, guid: a294eee07fb1f0b40bc8a7718e19d6c6, type: 2}
+    _level: 36
+  - _move: {fileID: 11400000, guid: 9efe314f985647a459523f2e3c85cd38, type: 2}
+    _level: 38
+  - _move: {fileID: 11400000, guid: 359c943635ba30c499f9c715aa3df1f3, type: 2}
+    _level: 40
+  - _move: {fileID: 11400000, guid: 6f1d1fb9f497609408799899764b4cc8, type: 2}
+    _level: 45
+  - _move: {fileID: 11400000, guid: 40ea77d69f6c9c24db3a2f7250abcccb, type: 2}
+    _level: 50
   _preBattleDialogue: Hissssss...
   _postBattleDialogue: Hissssss...
