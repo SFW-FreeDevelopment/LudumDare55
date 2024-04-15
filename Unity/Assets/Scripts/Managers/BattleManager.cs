@@ -185,7 +185,29 @@ namespace LD55.Managers
                 State.WaitingForPlayerInput = waitingForPlayerInput;
             }));
         }
-        
+
+        private void DisplayFleeResult(FleeResult fleeResult, bool waitingForPlayerInput)
+        {
+            _mainMenu.SetActive(false);
+            _fightMenu.SetActive(false);
+            _partyMenu.SetActive(false);
+            _itemsMenu.SetActive(false);
+
+            _hitResultText.text = fleeResult.FleeMessage;
+            _hitResultPane.gameObject.SetActive(true);
+            State.InputLocked = true;
+            State.AnimationInProgress = true;
+            StartCoroutine(CoroutineTemplate.DelayAndFireRoutine(2.0f, () => {
+                _hitResultPane.gameObject.SetActive(false);
+                _mainMenu.SetActive(true);
+                State.CurrentMenu = null;
+                State.InputLocked = false;
+                CheckForBattleEnd();
+                State.AnimationInProgress = false;
+                State.WaitingForPlayerInput = waitingForPlayerInput;
+            }));
+        }
+
         private void RefreshUI()
         {
             SetupEnemyUI(State.Enemy.CurrentMonster);
@@ -285,8 +307,18 @@ namespace LD55.Managers
 
         public void SelectRun()
         {
-            State.CurrentMenu = null;
-            Hide();
+            var playerMonster = State.CurrentMonster;
+            var enemyMonster = State.Enemy.CurrentMonster;
+            FleeResult result = BattleEngine.TryFlee(playerMonster, enemyMonster);
+
+            DisplayFleeResult(result, false);
+            
+            if (result.FleeSuccess)
+            {
+                State.CurrentMenu = null;
+                Hide();
+            }
+
         }
     }
 }

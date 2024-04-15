@@ -24,5 +24,6 @@ namespace LD55.Models
         
         [SerializeField] private Party _party = new Party();
         public Party Party => _party;
+        public bool IsDefeated { get; set; }
     }
 }
