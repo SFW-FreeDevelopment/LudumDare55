@@ -19,6 +19,9 @@ namespace LD55.Managers
         [SerializeField] private GameObject _hitResultPane;
         [SerializeField] private TextMeshProUGUI _hitResultText;
         
+        [SerializeField] private GameObject _battleResultPane;
+        [SerializeField] private TextMeshProUGUI _battleResultText;
+        
         public BattleState State { get; set; } = new BattleState();
 
         private Coroutine CurrentBattleRoutine { get; set; }
@@ -98,7 +101,6 @@ namespace LD55.Managers
             var result = BattleEngine.TryAttack(State.CurrentMonster, State.Enemy.CurrentMonster, move);
             RefreshUI();
             DisplayHitResult(result);
-            CheckForBattleEnd();
         }
 
         private void PlayAttackSound(BattleMoveCategory category)
@@ -150,11 +152,12 @@ namespace LD55.Managers
             _hitResultText.text = hitResult.Message;
             _hitResultPane.gameObject.SetActive(true);
             State.InputLocked = true;
-            StartCoroutine(CoroutineTemplate.DelayAndFireRoutine(2.5f, () => {
+            StartCoroutine(CoroutineTemplate.DelayAndFireRoutine(2.0f, () => {
                 _hitResultPane.gameObject.SetActive(false);
                 _mainMenu.SetActive(true);
                 State.CurrentMenu = null;
                 State.InputLocked = false;
+                CheckForBattleEnd();
             }));
         }
         
@@ -168,18 +171,23 @@ namespace LD55.Managers
         {
             var enemyWiped = State.Enemy.Party.Monsters.All(x => x.CurrentHealth == 0);
             var playerWiped = State.PlayerParty.Monsters.All(x => x.CurrentHealth == 0);
-            if (enemyWiped || playerWiped)
-            {
-                if (playerWiped)
-                {
-                    Debug.Log("Oh nouuur");
-                    // TODO: Handle end battle
-                }
-                else
-                {
-                    // TODO: Handle end battle
-                }
-            }
+            var battleHasEnded = enemyWiped || playerWiped;
+            if (!battleHasEnded) return;
+            
+            _fightMenu.SetActive(false);
+            _partyMenu.SetActive(false);
+            _itemsMenu.SetActive(false);
+            _mainMenu.SetActive(false);
+            _hitResultPane.SetActive(false);
+            
+            _battleResultText.text = playerWiped
+                ? $"{State.Enemy.Name} defeated you..."
+                : $"You defeated {State.Enemy.Name}!";
+            _battleResultPane.SetActive(true);
+            StartCoroutine(CoroutineTemplate.DelayAndFireRoutine(2.0f, () => {
+                Hide();
+                // TODO: Dialogue manager call
+            }));
         }
         
         private void SetupEnemyUI(MonsterInstance monster)
@@ -206,6 +214,7 @@ namespace LD55.Managers
             StopCoroutine(CurrentBattleRoutine);
             CurrentBattleRoutine = null;
             IsBattling = false;
+            _battleResultPane.SetActive(false);
             _fightMenu.SetActive(false);
             _partyMenu.SetActive(false);
             _itemsMenu.SetActive(false);
