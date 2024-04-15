@@ -14,14 +14,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 9
   _name: Fel Spirit
-  _description: 
+  _description: A spirit that channels energy to use fel powers
   _sprite: {fileID: 1496406680, guid: cfd7459c9d8486349b620c1dc2f0e36d, type: 3}
   _image: {fileID: 21300000, guid: bc1e4d70da155654bb9acd03c0ed78fa, type: 3}
   _type: 4
   _baseExperience: 0
   _catchRate: 0
+  _speed: 100
   _learnableMoves:
   - _move: {fileID: 11400000, guid: 527ccd8cce273a448a804660cadd4c44, type: 2}
     _level: 1
-  _preBattleDialogue: ...
-  _postBattleDialogue: ...
+  - _move: {fileID: 11400000, guid: 231026c358f0f4642add3ed61516be57, type: 2}
+    _level: 1
+  - _move: {fileID: 11400000, guid: 0e13aeffc2724f242b3f5bf23f569c88, type: 2}
+    _level: 5
+  - _move: {fileID: 11400000, guid: a0bd016fc55b04b449f79235da574857, type: 2}
+    _level: 10
+  - _move: {fileID: 11400000, guid: cd74b26d9dd08be40b9bdce89c833c09, type: 2}
+    _level: 15
+  - _move: {fileID: 11400000, guid: 9efe314f985647a459523f2e3c85cd38, type: 2}
+    _level: 20
+  - _move: {fileID: 11400000, guid: 2c5803354a6697d4a857ac5e47b0fff1, type: 2}
+    _level: 25
+  - _move: {fileID: 11400000, guid: 442fadfc88ec48841b74652db83451ac, type: 2}
+    _level: 30
+  - _move: {fileID: 11400000, guid: 4f9eabe05d55cd147804fcd0cbc71910, type: 2}
+    _level: 35
+  - _move: {fileID: 11400000, guid: 16b907cc6d30d0a44bcb8a908ff24664, type: 2}
+    _level: 40
+  - _move: {fileID: 11400000, guid: 586a6bbfe38ac934b9ff27183bbd128b, type: 2}
+    _level: 45
+  - _move: {fileID: 11400000, guid: 738e013defa58ca44ab4aac01973a1c9, type: 2}
+    _level: 50
+  _preBattleDialogue: The netherworld awaits!
+  _postBattleDialogue: The netherworld awaits!

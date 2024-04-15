@@ -26,7 +26,7 @@ MonoBehaviour:
     _level: 1
   - _move: {fileID: 11400000, guid: 144a791618d212249b2ccb46e174e958, type: 2}
     _level: 1
-  - _move: {fileID: 11400000, guid: d879f91ce7d28f544a0adfb1a57f52b0, type: 2}
+  - _move: {fileID: 11400000, guid: fc864f9dcebf6b0429e9aaf7c11295e9, type: 2}
     _level: 4
   - _move: {fileID: 11400000, guid: 266e36e5d34422846afa8c3476cb8ed3, type: 2}
     _level: 7
@@ -36,7 +36,7 @@ MonoBehaviour:
     _level: 14
   - _move: {fileID: 11400000, guid: b5bdac4dbf7ab0c4a9de4e93beed1d6b, type: 2}
     _level: 18
-  - _move: {fileID: 11400000, guid: 359258e3d7df8ca49909633504bc7bd6, type: 2}
+  - _move: {fileID: 11400000, guid: 73c620b5239c68d48a4486ec77ab31b3, type: 2}
     _level: 19
   - _move: {fileID: 11400000, guid: d879f91ce7d28f544a0adfb1a57f52b0, type: 2}
     _level: 22
@@ -54,5 +54,5 @@ MonoBehaviour:
     _level: 45
   - _move: {fileID: 11400000, guid: 158c7637620eef84d89bf370a1c3033c, type: 2}
     _level: 50
-  _preBattleDialogue: ...
-  _postBattleDialogue: ...
+  _preBattleDialogue: ... Booofs ...
+  _postBattleDialogue: ... Boof Hellaboofs...
