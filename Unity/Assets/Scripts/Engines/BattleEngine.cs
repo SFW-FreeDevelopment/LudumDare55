@@ -13,7 +13,7 @@ namespace LD55
     {
         HitResult TryAttack(MonsterInstance attackerInstance, MonsterInstance defenderIntance, BattleMove battleMove);
         ItemResult UseItem(MonsterInstance attackerInstance, MonsterInstance defenderIntance, string item);
-        FleeResult TryFlee(MonsterInstance attackerInstance, MonsterInstance defenderIntance);
+        FleeResult TryFlee(MonsterInstance attackerInstance, MonsterInstance defenderIntance, int attempt = 0);
 
 
     }
@@ -47,6 +47,7 @@ namespace LD55
     {
         public bool FleeSuccess { get; set; }
         public string FleeMessage { get; set; }
+        public int FleeAttempts { get; set; }
     }
 
     public enum Effectiveness
@@ -59,20 +60,20 @@ namespace LD55
 
     public class BattleEngine : IBattleEngine
     {
-        public FleeResult TryFlee(MonsterInstance attackerInstance, MonsterInstance defenderInstance)
+        public FleeResult TryFlee(MonsterInstance attackerInstance, MonsterInstance defenderInstance, int attempt)
         {
             FleeResult result = new FleeResult();
-            var fleeSuccess = CheckFleeSuccess(attackerInstance, defenderInstance);
+            var fleeSuccess = CheckFleeSuccess(attackerInstance, defenderInstance, attempt);
 
             if (fleeSuccess)
             {
                 result.FleeSuccess = true;
-                result.FleeMessage = $"{attackerInstance} has successfully fled";
+                result.FleeMessage = $"{attackerInstance.Monster.Name} has successfully fled";
             }
             else
             {
                 result.FleeSuccess = false;
-                result.FleeMessage = $"{attackerInstance} failed to flee";
+                result.FleeMessage = $"{attackerInstance.Monster.Name} was too slow to run away!";
             }
 
             return result;
@@ -85,23 +86,24 @@ namespace LD55
         /// <param name="attackerInstance"></param>
         /// <param name="defenderInstance"></param>
         /// <returns></returns>
-        private bool CheckFleeSuccess(MonsterInstance playerInstance, MonsterInstance monsterInstance)
+        private bool CheckFleeSuccess(MonsterInstance playerInstance, MonsterInstance monsterInstance, int attempt = 0)
         {
+            const int baseEscapeChance = 40; //Assuming full hp, equal speed, and same level, this is the base chance for escape as a percent.
+            const int additionalChancePerAttempt = 5; //Each attempt adds this much % chance to escape.
+
             //variables used
             System.Random rand = new System.Random();
-            int speedRatio = playerInstance.Monster.Speed / monsterInstance.Monster.Speed;
-            var levelDifference = playerInstance.Level - monsterInstance.Level;
             var defendingHpRatioRemaining = (monsterInstance.CurrentHealth / monsterInstance.MaxHealth);
+            int playerSpeedScore = 2 * playerInstance.Monster.Speed;
+            int monsterSpeedScore =  monsterInstance.Monster.Speed + (monsterInstance.Monster.Speed * defendingHpRatioRemaining);
+            int speedRatio = playerSpeedScore / monsterSpeedScore;
+            var levelFactor = (playerInstance.Level - monsterInstance.Level);
 
-            //This is the roll that will be used against the check to see if the flee succeeded
-            var playerRoll = (speedRatio * 32) + 60 + levelDifference;
+            //This is the roll that will be used against the check to see if the flee succeedd
+            var playerRoll = (speedRatio * baseEscapeChance) + levelFactor + ((attempt - 1) * additionalChancePerAttempt);
 
-            //Generate a random number between 0 and 256. 25% of the roll will be adjusted for the defending monster hp ratio
-            var checkToBeatBase = rand.Next(0, 192);
-            var random0To64 = rand.Next(0, 64);
-
-            //Apply the hp factor to the check
-            var checkToBeat = checkToBeatBase + (random0To64 * defendingHpRatioRemaining);
+            //Generate a random number between 0 and 256
+            var checkToBeat = rand.Next(0, 100);
 
             if (playerRoll > checkToBeat)
             {

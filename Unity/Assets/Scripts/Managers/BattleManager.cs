@@ -14,6 +14,7 @@ namespace LD55.Managers
     public class BattleManager : SceneSingleton<BattleManager>
     {
         public bool IsBattling { get; set; }
+        private int runAttemptCount = 0;    
         
         [SerializeField] private GameObject _canvas, _mainMenu, _fightMenu, _partyMenu, _itemsMenu;
 
@@ -309,14 +310,18 @@ namespace LD55.Managers
         {
             var playerMonster = State.CurrentMonster;
             var enemyMonster = State.Enemy.CurrentMonster;
-            FleeResult result = BattleEngine.TryFlee(playerMonster, enemyMonster);
-
+            runAttemptCount++;
+            FleeResult result = BattleEngine.TryFlee(playerMonster, enemyMonster, runAttemptCount);
+            
             DisplayFleeResult(result, false);
             
             if (result.FleeSuccess)
             {
-                State.CurrentMenu = null;
-                Hide();
+                StartCoroutine(CoroutineTemplate.DelayAndFireRoutine(2.0f, () =>
+                {
+                    State.CurrentMenu = null;
+                    Hide();
+                }));
             }
 
         }
