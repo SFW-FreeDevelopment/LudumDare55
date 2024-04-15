@@ -32,6 +32,9 @@ namespace LD55.ScriptableObjects
         
         [SerializeField] private byte _catchRate;
         public byte CatchRate => _catchRate;
+        
+        [SerializeField] private byte _speed = 100;
+        public byte Speed => _speed;
 
         [SerializeField] private LearnableMove[] _learnableMoves = Array.Empty<LearnableMove>();
         public LearnableMove[] LearnableMoves => _learnableMoves;
