@@ -149,6 +149,7 @@ namespace LD55
                     break;
                 case "potion":
                     result.HitResult = TryHeal(playerInstance, item);
+                    playerInstance.Heal((int)result.HitResult.Damage);
                     result.ItemSuccess = true;
                     break;
             }
@@ -164,7 +165,7 @@ namespace LD55
             var hitResult = new HitResult();
             hitResult.HitSuccess = true;
             hitResult.Damage = 10;//item.Damage;
-            hitResult.Message = $"{attackerInstance} used {item} to restore {hitResult.Damage} health";
+            hitResult.Message = $"{attackerInstance.Monster.Name} used {item} to restore {hitResult.Damage} health";
 
             return hitResult;
         }
@@ -324,7 +325,6 @@ namespace LD55
 
             //Move Hit
             hitResult.HitSuccess = true;
-            string monsterIntanceType = ""; //defenderInstance.Type
             var modifier = GetModifier(defenderInstance.Monster.Type, battleMove.MoveType);
             var modifierValue = 1m;
             switch (modifier)
