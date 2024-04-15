@@ -7,6 +7,7 @@ using LD55.ScriptableObjects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random=System.Random;
 
 namespace LD55.Managers
 {
@@ -48,48 +49,61 @@ namespace LD55.Managers
             {
                 yield return null;
                 
-                if (!IsBattling || !State.WaitingForPlayerInput || State.InputLocked) continue;
+                if (!IsBattling || State.InputLocked || State.AnimationInProgress) continue;
 
-                if (State.CurrentMenu == null)
+                // AI
+                if (!State.WaitingForPlayerInput)
                 {
-                    if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
-                    {
-                        SelectFight();
-                    }
-                    else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
-                    {
-                        SelectParty();
-                    }
-                    else if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
-                    {
-                        SelectItems();
-                    }
-                    else if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
-                    {
-                        SelectRun();
-                    }
+                    State.InputLocked = true;
+                    var moves = State.Enemy.CurrentMonster.Monster.LearnableMoves;
+                    var idx = UnityEngine.Random.Range(0, moves.Length);
+                    var move = moves[idx].Move;
+                    ProcessEnemyMove(move);
+                    State.InputLocked = false;
                 }
-                else if (State.CurrentMenu == SubMenu.Fight)
+                else
                 {
-                    if (Input.GetKeyDown(KeyCode.Escape))
+                    if (State.CurrentMenu == null)
                     {
-                        SelectBack();
+                        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+                        {
+                            SelectFight();
+                        }
+                        else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+                        {
+                            SelectParty();
+                        }
+                        else if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
+                        {
+                            SelectItems();
+                        }
+                        else if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
+                        {
+                            SelectRun();
+                        }
                     }
-                    else if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+                    else if (State.CurrentMenu == SubMenu.Fight)
                     {
-                        ProcessPlayerMove(State.CurrentMonster.Monster.LearnableMoves[0].Move);
-                    }
-                    else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
-                    {
-                        ProcessPlayerMove(State.CurrentMonster.Monster.LearnableMoves[1].Move);
-                    }
-                    else if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
-                    {
-                        ProcessPlayerMove(State.CurrentMonster.Monster.LearnableMoves[2].Move);
-                    }
-                    else if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
-                    {
-                        ProcessPlayerMove(State.CurrentMonster.Monster.LearnableMoves[3].Move);
+                        if (Input.GetKeyDown(KeyCode.Escape))
+                        {
+                            SelectBack();
+                        }
+                        else if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+                        {
+                            ProcessPlayerMove(State.CurrentMonster.Monster.LearnableMoves[0].Move);
+                        }
+                        else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+                        {
+                            ProcessPlayerMove(State.CurrentMonster.Monster.LearnableMoves[1].Move);
+                        }
+                        else if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
+                        {
+                            ProcessPlayerMove(State.CurrentMonster.Monster.LearnableMoves[2].Move);
+                        }
+                        else if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
+                        {
+                            ProcessPlayerMove(State.CurrentMonster.Monster.LearnableMoves[3].Move);
+                        }
                     }
                 }
             }
@@ -100,7 +114,15 @@ namespace LD55.Managers
             PlayAttackSound(move.Category);
             var result = BattleEngine.TryAttack(State.CurrentMonster, State.Enemy.CurrentMonster, move);
             RefreshUI();
-            DisplayHitResult(result);
+            DisplayHitResult(result, false);
+        }
+
+        private void ProcessEnemyMove(BattleMove move)
+        {
+            PlayAttackSound(move.Category);
+            var result = BattleEngine.TryAttack(State.Enemy.CurrentMonster, State.CurrentMonster, move);
+            RefreshUI();
+            DisplayHitResult(result, true);
         }
 
         private void PlayAttackSound(BattleMoveCategory category)
@@ -142,7 +164,7 @@ namespace LD55.Managers
             CurrentBattleRoutine = StartCoroutine(Routine());
         }
 
-        private void DisplayHitResult(HitResult hitResult)
+        private void DisplayHitResult(HitResult hitResult, bool waitingForPlayerInput)
         {
             _mainMenu.SetActive(false);
             _fightMenu.SetActive(false);
@@ -152,12 +174,15 @@ namespace LD55.Managers
             _hitResultText.text = hitResult.Message;
             _hitResultPane.gameObject.SetActive(true);
             State.InputLocked = true;
+            State.AnimationInProgress = true;
             StartCoroutine(CoroutineTemplate.DelayAndFireRoutine(2.0f, () => {
                 _hitResultPane.gameObject.SetActive(false);
                 _mainMenu.SetActive(true);
                 State.CurrentMenu = null;
                 State.InputLocked = false;
                 CheckForBattleEnd();
+                State.AnimationInProgress = false;
+                State.WaitingForPlayerInput = waitingForPlayerInput;
             }));
         }
         
@@ -173,7 +198,8 @@ namespace LD55.Managers
             var playerWiped = State.PlayerParty.Monsters.All(x => x.CurrentHealth == 0);
             var battleHasEnded = enemyWiped || playerWiped;
             if (!battleHasEnded) return;
-            
+
+            IsBattling = false;
             _fightMenu.SetActive(false);
             _partyMenu.SetActive(false);
             _itemsMenu.SetActive(false);
@@ -184,7 +210,9 @@ namespace LD55.Managers
                 ? $"{State.Enemy.Name} defeated you..."
                 : $"You defeated {State.Enemy.Name}!";
             _battleResultPane.SetActive(true);
+            State.AnimationInProgress = true;
             StartCoroutine(CoroutineTemplate.DelayAndFireRoutine(2.0f, () => {
+                State.AnimationInProgress = false;
                 Hide();
                 // TODO: Dialogue manager call
             }));
@@ -211,8 +239,11 @@ namespace LD55.Managers
         
         public void Hide()
         {
-            StopCoroutine(CurrentBattleRoutine);
-            CurrentBattleRoutine = null;
+            if (CurrentBattleRoutine != null)
+            {
+                StopCoroutine(CurrentBattleRoutine);
+                CurrentBattleRoutine = null;
+            }
             IsBattling = false;
             _battleResultPane.SetActive(false);
             _fightMenu.SetActive(false);

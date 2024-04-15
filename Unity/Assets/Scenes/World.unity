@@ -9136,11 +9136,6 @@ MonoBehaviour:
         Experience: 10
         MaxHealth: 12
         CurrentHealth: 12
-      - _monster: {fileID: 11400000, guid: 87a4367e0f6981d4da686d7626e23bc0, type: 2}
-        Level: 2
-        Experience: 10
-        MaxHealth: 12
-        CurrentHealth: 12
   _hasFought: 0
 --- !u!58 &1103064612
 CircleCollider2D:
@@ -17849,6 +17844,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4813172706092836577, guid: 94336e9d42c6bb14a993413a77e47b2b, type: 3}
       propertyPath: _data.Level
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813172706092836577, guid: 94336e9d42c6bb14a993413a77e47b2b, type: 3}
+      propertyPath: _data.MaxHealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813172706092836577, guid: 94336e9d42c6bb14a993413a77e47b2b, type: 3}
+      propertyPath: _data.CurrentHealth
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4813172706092836591, guid: 94336e9d42c6bb14a993413a77e47b2b, type: 3}

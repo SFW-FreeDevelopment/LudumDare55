@@ -7,6 +7,7 @@ namespace LD55.Models
     public class BattleState
     {
         public bool InputLocked { get; set; }
+        public bool AnimationInProgress { get; set; }
         public SubMenu? CurrentMenu { get; set; }
         public bool WaitingForPlayerInput { get; set; } = true;
         public BattleEnemyModel Enemy { get; set; }
