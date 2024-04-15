@@ -14,14 +14,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 11
   _name: Fire Infernal Golem
-  _description: 
+  _description: A golem made of raw fire energy restrained by rock
   _sprite: {fileID: -847788481, guid: cfd7459c9d8486349b620c1dc2f0e36d, type: 3}
   _image: {fileID: 21300000, guid: edf2cf34c9f437c41a885387e5d6f228, type: 3}
   _type: 1
   _baseExperience: 0
   _catchRate: 0
+  _speed: 100
   _learnableMoves:
   - _move: {fileID: 11400000, guid: 527ccd8cce273a448a804660cadd4c44, type: 2}
     _level: 1
+  - _move: {fileID: 11400000, guid: 85ce7f24679c9a3478ebd3c211e49c51, type: 2}
+    _level: 1
+  - _move: {fileID: 11400000, guid: fc864f9dcebf6b0429e9aaf7c11295e9, type: 2}
+    _level: 6
+  - _move: {fileID: 11400000, guid: 1fcd3bf171259844888830f522d96afd, type: 2}
+    _level: 12
+  - _move: {fileID: 11400000, guid: 85aeed9ecc161a048920f54a64b375cb, type: 2}
+    _level: 17
+  - _move: {fileID: 11400000, guid: 89d2c0e5efb76db429ec888c655fb6cb, type: 2}
+    _level: 23
+  - _move: {fileID: 11400000, guid: a8bd87cccc7eef94a9343f07ebd8d424, type: 2}
+    _level: 29
+  - _move: {fileID: 11400000, guid: 4f9eabe05d55cd147804fcd0cbc71910, type: 2}
+    _level: 35
+  - _move: {fileID: 11400000, guid: 266e36e5d34422846afa8c3476cb8ed3, type: 2}
+    _level: 41
+  - _move: {fileID: 11400000, guid: b5bdac4dbf7ab0c4a9de4e93beed1d6b, type: 2}
+    _level: 44
+  - _move: {fileID: 11400000, guid: 158c7637620eef84d89bf370a1c3033c, type: 2}
+    _level: 47
+  - _move: {fileID: 11400000, guid: 58a511f26318ff24aae44ef1f1cbedb0, type: 2}
+    _level: 50
   _preBattleDialogue: GRRAAAHHH!!!
   _postBattleDialogue: GRRAAAHHH!!!

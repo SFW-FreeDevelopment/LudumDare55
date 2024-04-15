@@ -14,14 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 6
   _name: Rock Imp
-  _description: 
+  _description: An imp specializing in rock techniques
   _sprite: {fileID: -1845859822, guid: cfd7459c9d8486349b620c1dc2f0e36d, type: 3}
   _image: {fileID: 21300000, guid: eb943305f9b555b41abcb51044e0bee8, type: 3}
   _type: 2
   _baseExperience: 0
   _catchRate: 0
+  _speed: 100
   _learnableMoves:
   - _move: {fileID: 11400000, guid: 527ccd8cce273a448a804660cadd4c44, type: 2}
     _level: 1
-  _preBattleDialogue: ...
-  _postBattleDialogue: ...
+  - _move: {fileID: 11400000, guid: 86865a8945b378747a9117bd5d3e8e2d, type: 2}
+    _level: 1
+  - _move: {fileID: 11400000, guid: 6e0a6d65d55007148aa72c90ac4503e5, type: 2}
+    _level: 5
+  - _move: {fileID: 11400000, guid: 6ba41468e3264604480ed9f67d688bcc, type: 2}
+    _level: 9
+  - _move: {fileID: 11400000, guid: 359258e3d7df8ca49909633504bc7bd6, type: 2}
+    _level: 14
+  - _move: {fileID: 11400000, guid: ad289a0e4ff21a14d8ae16b0061910ef, type: 2}
+    _level: 18
+  - _move: {fileID: 11400000, guid: 553de3bfab2a8fb49906fab9c7c28c62, type: 2}
+    _level: 21
+  - _move: {fileID: 11400000, guid: 78498bb0aedef674a9524d68707845e3, type: 2}
+    _level: 24
+  - _move: {fileID: 11400000, guid: 96f551045de97e849868a629df47556f, type: 2}
+    _level: 29
+  - _move: {fileID: 11400000, guid: 89d2c0e5efb76db429ec888c655fb6cb, type: 2}
+    _level: 32
+  - _move: {fileID: 11400000, guid: 1a122ae7c8a2d734b84eed6e029edaa9, type: 2}
+    _level: 36
+  - _move: {fileID: 11400000, guid: d6fcfdcaaf6e6b54082d4faf80a93bd2, type: 2}
+    _level: 40
+  - _move: {fileID: 11400000, guid: 9562201c78905f84888743e0ed585327, type: 2}
+    _level: 45
+  - _move: {fileID: 11400000, guid: 58a511f26318ff24aae44ef1f1cbedb0, type: 2}
+    _level: 50
+  _preBattleDialogue: ... REEEEE ...
+  _postBattleDialogue: ... REEEEE ...

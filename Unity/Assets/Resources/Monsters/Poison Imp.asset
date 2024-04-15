@@ -14,14 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 5
   _name: Poison Imp
-  _description: 
+  _description: An imp specializing in poison techniques
   _sprite: {fileID: -1845859822, guid: cfd7459c9d8486349b620c1dc2f0e36d, type: 3}
   _image: {fileID: 21300000, guid: eb943305f9b555b41abcb51044e0bee8, type: 3}
   _type: 3
   _baseExperience: 0
   _catchRate: 0
+  _speed: 100
   _learnableMoves:
   - _move: {fileID: 11400000, guid: 527ccd8cce273a448a804660cadd4c44, type: 2}
     _level: 1
-  _preBattleDialogue: ...
-  _postBattleDialogue: ...
+  - _move: {fileID: 11400000, guid: b2ac3885ec3723c4f8f2a9de00f855e9, type: 2}
+    _level: 1
+  - _move: {fileID: 11400000, guid: c517dcceec23bf04cbe8da4531d1790d, type: 2}
+    _level: 5
+  - _move: {fileID: 11400000, guid: e01da92d2ccd09348ac62232829c9e4a, type: 2}
+    _level: 9
+  - _move: {fileID: 11400000, guid: 586a6bbfe38ac934b9ff27183bbd128b, type: 2}
+    _level: 14
+  - _move: {fileID: 11400000, guid: 0e13aeffc2724f242b3f5bf23f569c88, type: 2}
+    _level: 18
+  - _move: {fileID: 11400000, guid: 2b7ee8ce8349c8248b00d7e755b6e9d3, type: 2}
+    _level: 21
+  - _move: {fileID: 11400000, guid: ab62243cb86f2554bbb6999cf2812fc5, type: 2}
+    _level: 24
+  - _move: {fileID: 11400000, guid: a294eee07fb1f0b40bc8a7718e19d6c6, type: 2}
+    _level: 29
+  - _move: {fileID: 11400000, guid: e63d5dc0b872d6a4cb096889f132ff53, type: 2}
+    _level: 32
+  - _move: {fileID: 11400000, guid: 6089680ebd7a93e4ea08202867f07596, type: 2}
+    _level: 36
+  - _move: {fileID: 11400000, guid: 359c943635ba30c499f9c715aa3df1f3, type: 2}
+    _level: 40
+  - _move: {fileID: 11400000, guid: 6089680ebd7a93e4ea08202867f07596, type: 2}
+    _level: 45
+  - _move: {fileID: 11400000, guid: 40ea77d69f6c9c24db3a2f7250abcccb, type: 2}
+    _level: 50
+  _preBattleDialogue: ... REEEEE ...
+  _postBattleDialogue: ... REEEEE ...
