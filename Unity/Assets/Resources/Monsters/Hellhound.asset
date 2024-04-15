@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 3
   _name: Hellaboofs
-  _description: 
+  _description: A hound from the depths of floofy hell!
   _sprite: {fileID: 1450990651, guid: cfd7459c9d8486349b620c1dc2f0e36d, type: 3}
   _image: {fileID: 21300000, guid: 8f2fbd7964c201446ac8b9e7d2a3f49d, type: 3}
   _type: 1
