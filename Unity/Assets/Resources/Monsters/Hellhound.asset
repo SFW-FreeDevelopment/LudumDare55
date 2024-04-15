@@ -20,8 +20,39 @@ MonoBehaviour:
   _type: 1
   _baseExperience: 0
   _catchRate: 0
+  _speed: 100
   _learnableMoves:
   - _move: {fileID: 11400000, guid: 527ccd8cce273a448a804660cadd4c44, type: 2}
     _level: 1
+  - _move: {fileID: 11400000, guid: 144a791618d212249b2ccb46e174e958, type: 2}
+    _level: 1
+  - _move: {fileID: 11400000, guid: d879f91ce7d28f544a0adfb1a57f52b0, type: 2}
+    _level: 4
+  - _move: {fileID: 11400000, guid: 266e36e5d34422846afa8c3476cb8ed3, type: 2}
+    _level: 7
+  - _move: {fileID: 11400000, guid: 359258e3d7df8ca49909633504bc7bd6, type: 2}
+    _level: 10
+  - _move: {fileID: 11400000, guid: 62a48b07e0608544b92e8c58aa263db8, type: 2}
+    _level: 14
+  - _move: {fileID: 11400000, guid: b5bdac4dbf7ab0c4a9de4e93beed1d6b, type: 2}
+    _level: 18
+  - _move: {fileID: 11400000, guid: 359258e3d7df8ca49909633504bc7bd6, type: 2}
+    _level: 19
+  - _move: {fileID: 11400000, guid: d879f91ce7d28f544a0adfb1a57f52b0, type: 2}
+    _level: 22
+  - _move: {fileID: 11400000, guid: 85aeed9ecc161a048920f54a64b375cb, type: 2}
+    _level: 25
+  - _move: {fileID: 11400000, guid: a8bd87cccc7eef94a9343f07ebd8d424, type: 2}
+    _level: 29
+  - _move: {fileID: 11400000, guid: 4f9eabe05d55cd147804fcd0cbc71910, type: 2}
+    _level: 32
+  - _move: {fileID: 11400000, guid: fbce536a5fad24643910969ca84a40df, type: 2}
+    _level: 37
+  - _move: {fileID: 11400000, guid: 1a122ae7c8a2d734b84eed6e029edaa9, type: 2}
+    _level: 40
+  - _move: {fileID: 11400000, guid: 1fcd3bf171259844888830f522d96afd, type: 2}
+    _level: 45
+  - _move: {fileID: 11400000, guid: 158c7637620eef84d89bf370a1c3033c, type: 2}
+    _level: 50
   _preBattleDialogue: ...
   _postBattleDialogue: ...

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07e0f5b2e8074e56b423020f4eed7f84, type: 3}
   m_Name: Rock Avalanche
   m_EditorClassIdentifier: 
-  _name: Laugh
+  _name: Rock Avalanche
   _description: Decreases opponent Attack.
   _category: 1
   _moveType: 2
