@@ -63,7 +63,7 @@ namespace LD55
         {
             FleeResult result = new FleeResult();
             var fleeSuccess = CheckFleeSuccess(attackerInstance, defenderInstance);
-            
+
             if (fleeSuccess)
             {
                 result.FleeSuccess = true;
@@ -98,7 +98,7 @@ namespace LD55
             {
                 return true;
             }
-            
+
             return false;
         }
 
@@ -151,11 +151,11 @@ namespace LD55
         {
             attackerInstance.Heal(10);//item.Damage);
             var hitResult = new HitResult();
-                hitResult.HitSuccess = true;
-                hitResult.Damage = 10;//item.Damage;
-                hitResult.Message = $"{attackerInstance} used {item} to restore {hitResult.Damage} health";
-                
-                return hitResult;
+            hitResult.HitSuccess = true;
+            hitResult.Damage = 10;//item.Damage;
+            hitResult.Message = $"{attackerInstance} used {item} to restore {hitResult.Damage} health";
+
+            return hitResult;
         }
 
         private CaptureResult TryCapture(MonsterInstance monsterInstance, string shardOrStone)
@@ -247,7 +247,7 @@ namespace LD55
         private decimal CalculateDamage(int level, int power, int attack, int defence, decimal modifier)
         {
             var random = new System.Random();
-            var levelModifier = ((2 * level)/5) + random.Next(1,3);
+            var levelModifier = ((2 * level)/5) + random.Next(1, 3);
             var attackDefenceRatio = attack/defence;
             var calculateNumerator = levelModifier * power * attackDefenceRatio;
             var resultBeforeModifier = (calculateNumerator / 50) + 2;
@@ -262,46 +262,48 @@ namespace LD55
         /// <returns></returns>
         private Effectiveness GetModifier(MonsterType defenderType, MonsterType moveType)
         {
-            //Check the moveType being used to get the strong types and weak types.
+            Dictionary<(MonsterType, MonsterType), Effectiveness> effectivenessMap = new Dictionary<(MonsterType, MonsterType), Effectiveness>
+    {
+        // Fire type effectiveness
+        {(MonsterType.Fire, MonsterType.Fire), Effectiveness.Ineffective},
+        {(MonsterType.Fire, MonsterType.Rock), Effectiveness.Ineffective},
+        {(MonsterType.Fire, MonsterType.Dark), Effectiveness.Effective},
+        
+        // Dark type effectiveness
+        {(MonsterType.Dark, MonsterType.Dark), Effectiveness.Ineffective},
+        {(MonsterType.Dark, MonsterType.Fire), Effectiveness.Ineffective},
+        {(MonsterType.Dark, MonsterType.Fel), Effectiveness.Effective},
+        
+        // Rock type effectiveness
+        {(MonsterType.Rock, MonsterType.Rock), Effectiveness.Ineffective},
+        {(MonsterType.Rock, MonsterType.Fire), Effectiveness.Ineffective},
+        {(MonsterType.Rock, MonsterType.Poison), Effectiveness.Effective},
+        
+        // Poison type effectiveness
+        {(MonsterType.Poison, MonsterType.Poison), Effectiveness.Ineffective},
+        {(MonsterType.Poison, MonsterType.Rock), Effectiveness.Ineffective},
+        {(MonsterType.Poison, MonsterType.Fel), Effectiveness.Effective},
+        
+        // Fel type effectiveness
+        {(MonsterType.Fel, MonsterType.Fel), Effectiveness.Ineffective},
+        {(MonsterType.Fel, MonsterType.Dark), Effectiveness.Ineffective},
+        {(MonsterType.Fel, MonsterType.Fire), Effectiveness.Ineffective}
+    };
 
-            switch (moveType)
+            if (effectivenessMap.TryGetValue((moveType, defenderType), out Effectiveness effectiveness))
             {
-                case MonsterType.Fire:
-                    if (defenderType == MonsterType.Fire ||
-                        defenderType == MonsterType.Rock)
-                    {
-                        return Effectiveness.Ineffective;
-                    }
-                    else if (defenderType == MonsterType.Dark)
-                    {
-                        return Effectiveness.Effective;
-                    }
-
-                    return Effectiveness.Normal;
-                case MonsterType.Dark:
-                    if (defenderType == MonsterType.Dark ||
-                        defenderType == MonsterType.Fire)
-                    {
-                        return Effectiveness.Ineffective;
-                    }
-                    else if (defenderType == MonsterType.Fel)
-                    {
-                        return Effectiveness.Effective;
-                    }
-
-                    return Effectiveness.Normal;
-
-                default: return Effectiveness.Normal;
-
+                return effectiveness;
             }
+
+            return Effectiveness.Normal;
         }
 
         public HitResult TryAttack(MonsterInstance attackerInstance, MonsterInstance defenderInstance, BattleMove battleMove)
         {
             var hitResult = new HitResult();
             var accuracyCheck = DoesMoveHit(battleMove.Accuracy);
-            
-            if(accuracyCheck == false) //Move Missed
+
+            if (accuracyCheck == false) //Move Missed
             {
                 hitResult.HitSuccess = false;
                 hitResult.Damage = 0;
@@ -314,7 +316,7 @@ namespace LD55
             string monsterIntanceType = ""; //defenderInstance.Type
             var modifier = GetModifier(defenderInstance.Monster.Type, battleMove.MoveType);
             var modifierValue = 1m;
-            switch(modifier)
+            switch (modifier)
             {
                 case Effectiveness.Effective:
                     hitResult.Effectiveness = Effectiveness.Effective;
@@ -333,7 +335,7 @@ namespace LD55
             var playerIntanceAttack = 15; //need to add to monsterinstance
             var monsterIntanceDefence = 10; //need to add to monsterinstance
 
-            if(battleMove.Category == Enums.BattleMoveCategory.Attack)
+            if (battleMove.Category == Enums.BattleMoveCategory.Attack)
             {
                 var damage = CalculateDamage(attackerInstance.Level, battleMove.Damage, playerIntanceAttack, monsterIntanceDefence, modifierValue);
                 defenderInstance.TakeDamage((int)damage);
@@ -342,8 +344,8 @@ namespace LD55
                 hitResult.Message = GenerateMessage(battleMove, hitResult, attackerInstance, defenderInstance);
                 return hitResult;
             }
-            
-            if(battleMove.Category == Enums.BattleMoveCategory.Status)
+
+            if (battleMove.Category == Enums.BattleMoveCategory.Status)
             {
                 ProcessStatus(battleMove, attackerInstance, defenderInstance);
                 hitResult.Damage = battleMove.Damage;
@@ -362,7 +364,7 @@ namespace LD55
 
         private bool ProcessStatus(BattleMove battleMove, MonsterInstance attackerInstance, MonsterInstance defenderInstance)
         {
-            switch(battleMove.Name)
+            switch (battleMove.Name)
             {
                 case "Attack Up":
                     //attackerInstance.AttakModifier += battleMove.Value;
@@ -384,11 +386,11 @@ namespace LD55
         private string GenerateMessage(BattleMove battleMove, HitResult hitResult, MonsterInstance attackerInstance, MonsterInstance defenderInstance = null)
         {
             string result = string.Empty;
-            if(hitResult.HitSuccess == false)
+            if (hitResult.HitSuccess == false)
             {
                 result = $"{attackerInstance.Monster.Name} used {battleMove.Name}... it missed! ";
             }
-            
+
             if (battleMove.Category == Enums.BattleMoveCategory.Attack && hitResult.HitSuccess == true)
             {
                 result = $"{attackerInstance.Monster.Name} used {battleMove.Name} on {defenderInstance.Monster.Name}.";
@@ -396,7 +398,7 @@ namespace LD55
                 {
                     result += $"{Environment.NewLine}It was {hitResult.Effectiveness.ToString()}.";
                 }
-                        
+
                 result += $"{Environment.NewLine}It took {hitResult.Damage} damage!";
             }
 
@@ -424,5 +426,5 @@ namespace LD55
         }
 
     }
-    
+
 }
