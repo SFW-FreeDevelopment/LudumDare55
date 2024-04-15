@@ -87,14 +87,23 @@ namespace LD55
         /// <returns></returns>
         private bool CheckFleeSuccess(MonsterInstance playerInstance, MonsterInstance monsterInstance)
         {
+            //variables used
             System.Random rand = new System.Random();
-            var randomVar = rand.Next(1, 15);//playerInstance.Speed);
-            var levelRatio = (playerInstance.Level / monsterInstance.Level);
-            var roll = 20;//levelRatio * randomVar + playerInstance.speed;
-            var baseCheckToBeat = 15;//monsterInstance.speed + rand.Next(1,monsterInstance.Speed)
-            var checkToBeat = baseCheckToBeat * (monsterInstance.CurrentHealth / monsterInstance.MaxHealth);
+            int speedRatio = playerInstance.Monster.Speed / monsterInstance.Monster.Speed;
+            var levelDifference = playerInstance.Level - monsterInstance.Level;
+            var defendingHpRatioRemaining = (monsterInstance.CurrentHealth / monsterInstance.MaxHealth);
 
-            if (roll > checkToBeat)
+            //This is the roll that will be used against the check to see if the flee succeeded
+            var playerRoll = (speedRatio * 32) + 60 + levelDifference;
+
+            //Generate a random number between 0 and 256. 25% of the roll will be adjusted for the defending monster hp ratio
+            var checkToBeatBase = rand.Next(0, 192);
+            var random0To64 = rand.Next(0, 64);
+
+            //Apply the hp factor to the check
+            var checkToBeat = checkToBeatBase + (random0To64 * defendingHpRatioRemaining);
+
+            if (playerRoll > checkToBeat)
             {
                 return true;
             }
