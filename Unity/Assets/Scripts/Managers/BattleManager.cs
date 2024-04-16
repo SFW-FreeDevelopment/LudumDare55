@@ -149,7 +149,7 @@ namespace LD55.Managers
             DisplayHitResult(result, false);
         }
 
-        private void ProcessPlayerItem(string item)
+        public void ProcessPlayerItem(string item)
         {
             var result = BattleEngine.UseItem(State.CurrentMonster, State.Enemy.CurrentMonster, item);
 

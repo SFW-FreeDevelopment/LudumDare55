@@ -1594,13 +1594,14 @@ GameObject:
   - component: {fileID: 149946280}
   - component: {fileID: 149946279}
   - component: {fileID: 149946278}
+  - component: {fileID: 149946282}
   m_Layer: 5
   m_Name: Attack 3 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &149946277
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1680,7 +1681,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 149946280}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 952859576}
+        m_TargetAssemblyTypeName: LD55.Managers.BattleManager, Assembly-CSharp
+        m_MethodName: ProcessPlayerItem
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: stone
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &149946280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1719,6 +1732,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149946276}
   m_CullTransparentMesh: 1
+--- !u!114 &149946282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149946276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea64c9f182148909e5ce77a04483d84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundName: 1
 --- !u!1 &229255486
 GameObject:
   m_ObjectHideFlags: 0
@@ -2475,7 +2501,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Attack 2
+  m_text: Shard
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f5eba6063ec8a1040b089349fe19caee, type: 2}
   m_sharedMaterial: {fileID: -872940385159971534, guid: f5eba6063ec8a1040b089349fe19caee, type: 2}
@@ -7883,7 +7909,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Attack 4
+  m_text: Hex Bag
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f5eba6063ec8a1040b089349fe19caee, type: 2}
   m_sharedMaterial: {fileID: -872940385159971534, guid: f5eba6063ec8a1040b089349fe19caee, type: 2}
@@ -8730,13 +8756,14 @@ GameObject:
   - component: {fileID: 1037492353}
   - component: {fileID: 1037492352}
   - component: {fileID: 1037492351}
+  - component: {fileID: 1037492355}
   m_Layer: 5
   m_Name: Attack 1 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1037492350
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8816,7 +8843,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1037492353}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 952859576}
+        m_TargetAssemblyTypeName: LD55.Managers.BattleManager, Assembly-CSharp
+        m_MethodName: ProcessPlayerItem
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: potion
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1037492353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8855,6 +8894,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1037492349}
   m_CullTransparentMesh: 1
+--- !u!114 &1037492355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037492349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea64c9f182148909e5ce77a04483d84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundName: 1
 --- !u!1 &1074581904
 GameObject:
   m_ObjectHideFlags: 0
@@ -9344,7 +9396,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103064609}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.5, y: -0.5, z: 0}
+  m_LocalPosition: {x: -4.5, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10167,7 +10219,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Attack 1
+  m_text: Potion
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f5eba6063ec8a1040b089349fe19caee, type: 2}
   m_sharedMaterial: {fileID: -872940385159971534, guid: f5eba6063ec8a1040b089349fe19caee, type: 2}
@@ -11288,13 +11340,14 @@ GameObject:
   - component: {fileID: 1347715698}
   - component: {fileID: 1347715697}
   - component: {fileID: 1347715696}
+  - component: {fileID: 1347715700}
   m_Layer: 5
   m_Name: Attack 4 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1347715695
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11377,14 +11430,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 952859576}
         m_TargetAssemblyTypeName: LD55.Managers.BattleManager, Assembly-CSharp
-        m_MethodName: SelectRun
-        m_Mode: 1
+        m_MethodName: ProcessPlayerItem
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: hexBag
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1347715698
@@ -11425,6 +11478,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1347715694}
   m_CullTransparentMesh: 1
+--- !u!114 &1347715700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347715694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea64c9f182148909e5ce77a04483d84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundName: 1
 --- !u!1 &1360457960
 GameObject:
   m_ObjectHideFlags: 0
@@ -12721,7 +12787,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Attack 3
+  m_text: Stone
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f5eba6063ec8a1040b089349fe19caee, type: 2}
   m_sharedMaterial: {fileID: -872940385159971534, guid: f5eba6063ec8a1040b089349fe19caee, type: 2}
@@ -15177,13 +15243,14 @@ GameObject:
   - component: {fileID: 1675473525}
   - component: {fileID: 1675473524}
   - component: {fileID: 1675473523}
+  - component: {fileID: 1675473527}
   m_Layer: 5
   m_Name: Attack 2 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1675473522
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15263,7 +15330,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1675473525}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 952859576}
+        m_TargetAssemblyTypeName: LD55.Managers.BattleManager, Assembly-CSharp
+        m_MethodName: ProcessPlayerItem
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: shard
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1675473525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15302,6 +15381,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675473521}
   m_CullTransparentMesh: 1
+--- !u!114 &1675473527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675473521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea64c9f182148909e5ce77a04483d84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundName: 1
 --- !u!1 &1683751110
 GameObject:
   m_ObjectHideFlags: 0
