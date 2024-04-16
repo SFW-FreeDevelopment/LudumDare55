@@ -541,6 +541,7 @@ GameObject:
   - component: {fileID: 11259556}
   - component: {fileID: 11259555}
   - component: {fileID: 11259554}
+  - component: {fileID: 11259558}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -627,7 +628,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 11259556}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 952859576}
+        m_TargetAssemblyTypeName: LD55.Managers.BattleManager, Assembly-CSharp
+        m_MethodName: SelectBack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &11259556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -666,6 +679,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11259552}
   m_CullTransparentMesh: 1
+--- !u!114 &11259558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11259552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea64c9f182148909e5ce77a04483d84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundName: 1
 --- !u!1 &58798339
 GameObject:
   m_ObjectHideFlags: 0
@@ -1105,6 +1131,7 @@ GameObject:
   - component: {fileID: 101755870}
   - component: {fileID: 101755869}
   - component: {fileID: 101755868}
+  - component: {fileID: 101755872}
   m_Layer: 5
   m_Name: Attack 1 Button
   m_TagString: Untagged
@@ -1191,7 +1218,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 101755870}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 952859576}
+        m_TargetAssemblyTypeName: LD55.Managers.BattleManager, Assembly-CSharp
+        m_MethodName: SelectMove
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &101755870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1230,6 +1269,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 101755866}
   m_CullTransparentMesh: 1
+--- !u!114 &101755872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101755866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea64c9f182148909e5ce77a04483d84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundName: 1
 --- !u!1 &104255324
 GameObject:
   m_ObjectHideFlags: 0
@@ -1378,6 +1430,7 @@ GameObject:
   - component: {fileID: 133555385}
   - component: {fileID: 133555384}
   - component: {fileID: 133555383}
+  - component: {fileID: 133555387}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -1464,7 +1517,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 133555385}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 952859576}
+        m_TargetAssemblyTypeName: LD55.Managers.BattleManager, Assembly-CSharp
+        m_MethodName: SelectBack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &133555385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1503,6 +1568,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133555381}
   m_CullTransparentMesh: 1
+--- !u!114 &133555387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133555381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea64c9f182148909e5ce77a04483d84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundName: 1
 --- !u!1 &149946276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1522,7 +1600,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &149946277
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1795,7 +1873,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &275798461
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5383,6 +5461,7 @@ GameObject:
   - component: {fileID: 579431847}
   - component: {fileID: 579431846}
   - component: {fileID: 579431845}
+  - component: {fileID: 579431849}
   m_Layer: 5
   m_Name: Attack 3 Button
   m_TagString: Untagged
@@ -5469,7 +5548,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 579431847}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 952859576}
+        m_TargetAssemblyTypeName: LD55.Managers.BattleManager, Assembly-CSharp
+        m_MethodName: SelectMove
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &579431847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5508,6 +5599,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 579431843}
   m_CullTransparentMesh: 1
+--- !u!114 &579431849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579431843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea64c9f182148909e5ce77a04483d84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundName: 1
 --- !u!1 &601090584
 GameObject:
   m_ObjectHideFlags: 0
@@ -5689,7 +5793,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &677889761
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7425,6 +7529,7 @@ MonoBehaviour:
   _hitResultText: {fileID: 867780811}
   _battleResultPane: {fileID: 745836673}
   _battleResultText: {fileID: 1794867801}
+  _musicSource: {fileID: 1555649281}
   _enemyImage: {fileID: 1256896733}
   _enemyName: {fileID: 828393045}
   _enemyLevelText: {fileID: 1005734691}
@@ -7447,7 +7552,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &964926250
 GameObject:
@@ -7952,7 +8057,7 @@ RectTransform:
   - {fileID: 1256896732}
   - {fileID: 1264421283}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8242,6 +8347,7 @@ GameObject:
   - component: {fileID: 1014628655}
   - component: {fileID: 1014628654}
   - component: {fileID: 1014628653}
+  - component: {fileID: 1014628657}
   m_Layer: 5
   m_Name: Attack 2 Button
   m_TagString: Untagged
@@ -8328,7 +8434,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1014628655}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 952859576}
+        m_TargetAssemblyTypeName: LD55.Managers.BattleManager, Assembly-CSharp
+        m_MethodName: SelectMove
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1014628655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8367,6 +8485,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1014628651}
   m_CullTransparentMesh: 1
+--- !u!114 &1014628657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014628651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea64c9f182148909e5ce77a04483d84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundName: 1
 --- !u!1 &1017788087
 GameObject:
   m_ObjectHideFlags: 0
@@ -8605,7 +8736,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1037492350
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11163,7 +11294,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1347715695
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11739,7 +11870,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1383131493}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 952859576}
+        m_TargetAssemblyTypeName: LD55.Managers.BattleManager, Assembly-CSharp
+        m_MethodName: SelectFight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1383131493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12754,7 +12897,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1465154086}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 952859576}
+        m_TargetAssemblyTypeName: LD55.Managers.BattleManager, Assembly-CSharp
+        m_MethodName: SelectParty
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1465154086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13726,6 +13881,134 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1555649280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1555649282}
+  - component: {fileID: 1555649281}
+  m_Layer: 0
+  m_Name: Music Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 0
+--- !u!82 &1555649281
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555649280}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 709bca103e3aaac47ae46e9e371ebe3b, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1555649282
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555649280}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1575647927
 GameObject:
   m_ObjectHideFlags: 0
@@ -14900,7 +15183,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1675473522
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15495,7 +15778,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1754077286}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 952859576}
+        m_TargetAssemblyTypeName: LD55.Managers.BattleManager, Assembly-CSharp
+        m_MethodName: SelectItems
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1754077286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15688,7 +15983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1847384558
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16119,6 +16414,7 @@ GameObject:
   - component: {fileID: 1909532087}
   - component: {fileID: 1909532086}
   - component: {fileID: 1909532085}
+  - component: {fileID: 1909532089}
   m_Layer: 5
   m_Name: Attack 4 Button
   m_TagString: Untagged
@@ -16208,12 +16504,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 952859576}
         m_TargetAssemblyTypeName: LD55.Managers.BattleManager, Assembly-CSharp
-        m_MethodName: SelectRun
-        m_Mode: 1
+        m_MethodName: SelectMove
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -16256,6 +16552,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1909532083}
   m_CullTransparentMesh: 1
+--- !u!114 &1909532089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909532083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea64c9f182148909e5ce77a04483d84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundName: 1
 --- !u!1 &1938543311
 GameObject:
   m_ObjectHideFlags: 0
@@ -17273,7 +17582,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2050687307}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 952859576}
+        m_TargetAssemblyTypeName: LD55.Managers.BattleManager, Assembly-CSharp
+        m_MethodName: SelectBack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2050687307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17458,7 +17779,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2088998349
 RectTransform:
   m_ObjectHideFlags: 0

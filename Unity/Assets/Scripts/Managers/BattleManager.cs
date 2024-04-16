@@ -24,6 +24,8 @@ namespace LD55.Managers
         
         [SerializeField] private GameObject _battleResultPane;
         [SerializeField] private TextMeshProUGUI _battleResultText;
+
+        [SerializeField] private AudioSource _musicSource;
         
         public BattleState State { get; set; } = new BattleState();
 
@@ -92,19 +94,19 @@ namespace LD55.Managers
                         }
                         else if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
                         {
-                            ProcessPlayerMove(State.CurrentMonster.Monster.LearnableMoves[0].Move);
+                            SelectMove(0);
                         }
                         else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
                         {
-                            ProcessPlayerMove(State.CurrentMonster.Monster.LearnableMoves[1].Move);
+                            SelectMove(1);
                         }
                         else if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
                         {
-                            ProcessPlayerMove(State.CurrentMonster.Monster.LearnableMoves[2].Move);
+                            SelectMove(2);
                         }
                         else if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
                         {
-                            ProcessPlayerMove(State.CurrentMonster.Monster.LearnableMoves[3].Move);
+                            SelectMove(3);
                         }
                     }
                     else if (State.CurrentMenu == SubMenu.Items)
@@ -132,6 +134,11 @@ namespace LD55.Managers
                     }
                 }
             }
+        }
+
+        public void SelectMove(int index)
+        {
+            ProcessPlayerMove(State.CurrentMonster.Monster.LearnableMoves[index].Move);
         }
 
         private void ProcessPlayerMove(BattleMove move)
@@ -182,13 +189,9 @@ namespace LD55.Managers
             }
         }
 
-        public void SelectMove()
-        {
-            
-        }
-
         public void Show(BattleEnemyModel model)
         {
+            _musicSource.gameObject.SetActive(true);
             IsBattling = true;
             State = new BattleState
             {
@@ -281,6 +284,8 @@ namespace LD55.Managers
             var playerWiped = State.PlayerParty.Monsters.All(x => x.CurrentHealth == 0);
             var battleHasEnded = enemyWiped || playerWiped;
             if (!battleHasEnded) return;
+            
+            AudioManager.Instance.Play(SoundName.Thud);
 
             IsBattling = false;
             _fightMenu.SetActive(false);
@@ -322,6 +327,7 @@ namespace LD55.Managers
         
         public void Hide()
         {
+            _musicSource.gameObject.SetActive(false);
             if (CurrentBattleRoutine != null)
             {
                 StopCoroutine(CurrentBattleRoutine);
@@ -338,6 +344,7 @@ namespace LD55.Managers
 
         public void SelectFight()
         {
+            AudioManager.Instance.Play(SoundName.Click1);
             State.CurrentMenu = SubMenu.Fight;
             _fightMenu.SetActive(true);
             _mainMenu.SetActive(false);
@@ -345,6 +352,7 @@ namespace LD55.Managers
 
         public void SelectParty()
         {
+            AudioManager.Instance.Play(SoundName.Click1);
             State.CurrentMenu = SubMenu.Party;
             _partyMenu.SetActive(true);
             _mainMenu.SetActive(false);
@@ -352,8 +360,7 @@ namespace LD55.Managers
 
         public void SelectItems()
         {
-
-
+            AudioManager.Instance.Play(SoundName.Click1);
             State.CurrentMenu = SubMenu.Items;
             _itemsMenu.SetActive(true);
             _mainMenu.SetActive(false);
@@ -361,6 +368,7 @@ namespace LD55.Managers
 
         public void SelectBack()
         {
+            AudioManager.Instance.Play(SoundName.Click1);
             State.CurrentMenu = null;
             _fightMenu.SetActive(false);
             _partyMenu.SetActive(false);
@@ -370,6 +378,7 @@ namespace LD55.Managers
 
         public void SelectRun()
         {
+            AudioManager.Instance.Play(SoundName.Click1);
             var playerMonster = State.CurrentMonster;
             var enemyMonster = State.Enemy.CurrentMonster;
             runAttemptCount++;
